@@ -2401,7 +2401,7 @@ function bookTab(){
 function issueTax(){S.tax={amt:Math.floor(S.money*.1),due:S.day+3,post:0,base:S.money}}
 function showTax(){
  if(!S.tax)return;const d=S.tax.due-S.day;
- $('#modal').innerHTML=`<div class="mb" style="text-align:left;background:#fffdf8"><div class="row"><div style="width:52px;height:52px;border-radius:50%;background:#eee;display:grid;place-items:center;font-size:30px">🧑‍💼</div><div><small>Chi cục Thuế khu vực</small><br><b style="font-size:19px">anh Tín</b></div></div>
+ $('#modal').innerHTML=`<div class="mb" style="text-align:left;background:#fffdf8"><div class="row"><div style="width:52px;height:52px;border-radius:50%;background:#eee;display:grid;place-items:center;font-size:30px">👩‍💼</div><div><small>Chi cục Thuế khu vực</small><br><b style="font-size:19px">Chị Như Quỳnh</b></div></div>
  <h3 style="color:#2d5a8c;margin:12px 0 8px">Tới kỳ nộp thuế TNCN</h3>
  <div style="border:3px solid #a9b8d0;border-radius:18px;padding:14px;text-align:center;background:#f3f6fa"><div style="font-size:36px;font-weight:800;color:#2d5a8c;font-family:var(--f-title)">${vn(S.tax.amt)}</div>
  <small style="color:#6b5a4e">Thuế 10% trên số tiền đang có (${vn(S.tax.base)}). Không được khấu trừ — nộp ngay tại đây hoặc trong Sổ sách.</small><div style="color:#b03a2e;font-weight:700;margin-top:6px">Hạn nộp còn ${d} ngày${S.tax.post?' (đã hẹn)':''}</div></div>
@@ -2414,17 +2414,17 @@ function payTax(){
  S.certs=[c,...(S.certs||[])];S.tax=null;sfx('coin');save();showCert(0,true);
 }
 function postponeTax(){
- if(S.tax.post){toast('Anh Tín: "Hẹn một lần thôi nha!"');sfx('bad');return}
+ if(S.tax.post){toast('Chị Như Quỳnh: "Hẹn một lần thôi nha!"');sfx('bad');return}
  S.tax.post=1;S.tax.due+=2;S.tax.amt=Math.floor(S.tax.amt*1.05);toast('Gia hạn 2 ngày, phạt chậm nộp +5%');sfx('click');save();$('#modal').style.display='none';render();
 }
 function showCert(i,fresh){
  const c=(S.certs||[])[i];if(!c)return;
  $('#modal').innerHTML=`<div class="mb" style="background:#fffbea;border:6px double #b8860b;position:relative;text-align:center;font-family:Georgia,serif">
- <div style="font-size:11px;letter-spacing:1px;color:#8a6a1a">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>Độc lập – Tự do – Hạnh phúc</div>
+ <div style="font-size:11px;letter-spacing:1px;color:#8a6a1a">CỘNG HÒA XÃ HỘI CHỦ NGHĨA ...<br>Độc lập – Tự do – Hạnh phúc</div>
  <h3 style="margin:10px 0 2px;color:#8b1a1a;font-family:Georgia,serif">GIẤY CHỨNG NHẬN NỘP THUẾ</h3><small>Thuế thu nhập cá nhân · Số ${c.no}</small>
  <div style="text-align:left;margin:12px 4px;font-size:14px;line-height:1.8">Người nộp thuế: <b>${S.name}</b><br>Ngày lập: <b>${c.date}</b><br>Thu nhập tính thuế: <b>${vn(c.base)}₫</b><br>Thuế suất: <b>10%</b><br>Số tiền đã nộp: <b style="color:#8b1a1a">${vn(c.amt)}₫</b></div>
- <div style="display:flex;justify-content:space-between;align-items:flex-end;font-size:12px"><span>Người nộp<br><i>(ký, ghi rõ họ tên)</i></span><span style="position:relative">Cán bộ thuế<br><b>anh Tín</b></span></div>
- <div style="position:absolute;right:16px;bottom:64px;transform:rotate(-14deg);border:4px solid #c0392b;color:#c0392b;font-weight:900;padding:4px 10px;border-radius:8px;font-size:17px;opacity:.85;font-family:var(--f-title)">ĐÃ NỘP THUẾ</div>
+ <div style="display:flex;justify-content:space-between;align-items:flex-end;font-size:12px"><span>Người nộp<br><i>(ký, ghi rõ họ tên)</i></span><span style="position:relative">Cán bộ thuế<br><b>Chị Như Quỳnh</b></span></div>
+ <div style="position:absolute;right:20px;bottom:100px;transform:rotate(-14deg);border:4px solid #c0392b;color:#c0392b;font-weight:900;padding:4px 10px;border-radius:8px;font-size:17px;opacity:.85;font-family:var(--f-title)">ĐÃ NỘP THUẾ</div>
  <button class="o main" style="margin-top:16px" onclick="$('#modal').style.display='none';render()">${fresh?'Cất vào hồ sơ':'Đóng'}</button></div>`;
  $('#modal').style.display='flex';
 }
@@ -2543,7 +2543,7 @@ function reviewFor(c,s){
 function bldSvg(id){
  const win=(x,y,c)=>`<rect x="${x}" y="${y}" width="10" height="8" fill="${c||'#ffe9a8'}" stroke="#8a7" stroke-width=".6"/>`;
  if(id==='news')return `<rect x="-42" y="-30" width="84" height="62" rx="4" fill="#efe3c8" stroke="#8a6a3a" stroke-width="2"/><rect x="-42" y="-30" width="84" height="17" fill="#2f2f2f"/><text y="-17.5" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="Georgia,serif">BÁO LÁ CẢI</text><rect x="-34" y="-6" width="22" height="16" fill="#fff" stroke="#999"/><rect x="-6" y="-6" width="22" height="16" fill="#fff" stroke="#999"/><rect x="22" y="-6" width="14" height="38" fill="#8a5a3a"/><text x="-20" y="26" font-size="16" text-anchor="middle">📰</text>`;
- if(id==='police')return `<line x1="40" y1="-50" x2="40" y2="-8" stroke="#555" stroke-width="2"/><rect x="40" y="-50" width="24" height="16" fill="#da251d"/><text x="52" y="-37.5" font-size="12" text-anchor="middle" fill="#ffde00">★</text><rect x="-44" y="-24" width="88" height="56" fill="#f3d57a" stroke="#a4812a" stroke-width="2"/><polygon points="-50,-24 0,-46 50,-24" fill="#b5442e"/><rect x="-38" y="-19" width="76" height="14" fill="#c62828"/><text y="-9" font-size="7.5" fill="#ffe14d" text-anchor="middle" font-weight="800">CÔNG AN PHƯỜNG</text><rect x="-10" y="6" width="20" height="26" rx="10" fill="#6b4a2a"/><rect x="-36" y="8" width="18" height="14" fill="#9ed0e6" stroke="#556"/><rect x="18" y="8" width="18" height="14" fill="#9ed0e6" stroke="#556"/><circle cx="0" cy="-34" r="5" fill="#c62828" stroke="#ffd54f"/><text y="-31" font-size="7" text-anchor="middle" fill="#ffd54f">★</text>`;
+ if(id==='police')return `<line x1="28" y1="-58" x2="28" y2="-26" stroke="#555" stroke-width="2"/><path d="M29,-58 H62 L59,-48.5 L62,-39 H29 Z" fill="#fffbea" stroke="#b8860b" stroke-width="1.2"/><text x="44.5" y="-50.6" font-size="4.8" text-anchor="middle" fill="#8b1a1a" font-weight="800" font-family="Georgia,serif">CỘNG HÒA</text><text x="43.5" y="-43.2" font-size="5.2" text-anchor="middle" fill="#8b1a1a" font-weight="800" font-family="Georgia,serif">XHCN ...</text><rect x="-44" y="-24" width="88" height="56" fill="#f3d57a" stroke="#a4812a" stroke-width="2"/><polygon points="-50,-24 0,-46 50,-24" fill="#b5442e"/><rect x="-38" y="-19" width="76" height="14" fill="#c62828"/><text y="-9" font-size="7.5" fill="#ffe14d" text-anchor="middle" font-weight="800">CÔNG AN PHƯỜNG</text><rect x="-10" y="6" width="20" height="26" rx="10" fill="#6b4a2a"/><rect x="-36" y="8" width="18" height="14" fill="#9ed0e6" stroke="#556"/><rect x="18" y="8" width="18" height="14" fill="#9ed0e6" stroke="#556"/><circle cx="0" cy="-34" r="5" fill="#c62828" stroke="#ffd54f"/><text y="-31" font-size="7" text-anchor="middle" fill="#ffd54f">★</text>`;
  if(id==='cc'){let w='';for(let r=0;r<5;r++)for(let c=0;c<3;c++)w+=win(-24+c*16,-38+r*14);return `<rect x="-32" y="-46" width="64" height="80" fill="#d9a48f" stroke="#8a5a48" stroke-width="2"/>${w}<rect x="-7" y="18" width="14" height="16" fill="#6b4a2a"/>`}
  if(id==='kcn')return `<polygon points="-42,-8 -42,-26 -21,-8 -21,-26 0,-8 0,-26 21,-8 21,-26 42,-8" fill="#8a94a4"/><rect x="-42" y="-8" width="84" height="42" fill="#b0b8c4" stroke="#5a6472" stroke-width="2"/><rect x="26" y="-48" width="10" height="40" fill="#a0523a"/><circle cx="31" cy="-54" r="6" fill="#eee" opacity=".85"/><circle cx="38" cy="-62" r="5" fill="#eee" opacity=".6"/><rect x="-30" y="2" width="22" height="32" fill="#5a6472"/>${win(6,6,'#cfe')}${win(22,6,'#cfe')}`;
  if(id==='truong')return `<rect x="-46" y="-16" width="92" height="48" fill="#f7e7a6" stroke="#b09a40" stroke-width="2"/><polygon points="-50,-16 0,-38 50,-16" fill="#c6533a"/>${win(-38,-6)}${win(-22,-6)}${win(12,-6)}${win(28,-6)}<rect x="-8" y="6" width="16" height="26" fill="#6b4a2a"/><text y="-18" font-size="14" text-anchor="middle">🎓</text>`;
@@ -2552,23 +2552,69 @@ function bldSvg(id){
  return `<path d="M-44,-12 h88 l-7,-18 h-74 z" fill="#d94f4f"/><path d="M-30,-12 l3,-18 M-10,-12 l1,-18 M10,-12 l-1,-18 M30,-12 l-3,-18" stroke="#fff" stroke-width="5"/><rect x="-38" y="-12" width="76" height="36" fill="#e8c9a0" stroke="#a07040" stroke-width="2"/><text y="14" font-size="22" text-anchor="middle">🍜</text><circle cx="-30" cy="32" r="5" fill="#2f7fd0"/><circle cx="30" cy="32" r="5" fill="#2f7fd0"/>`;
 }
 const PLACES=[
- {id:'news',x:70,y:100,n:'Tòa soạn'},{id:'police',x:200,y:100,n:'Đồn Công An'},{id:'truong',x:330,y:100},
- {id:'cc',x:80,y:260},{id:'truoc',x:200,y:260},{id:'kcn',x:320,y:260},
- {id:'vila',x:80,y:420},{id:'hem',x:320,y:420}];
+ {id:'news',x:68,y:104,n:'Tòa soạn',ic:'📰',col:'#b08a4a'},
+ {id:'truong',x:334,y:92,ic:'🎓',col:'#e0a91c'},
+ {id:'police',x:92,y:214,n:'Đồn Công An',ic:'🚓',col:'#4f7fbf'},
+ {id:'kcn',x:326,y:222,ic:'🏭',col:'#7d8798'},
+ {id:'cc',x:76,y:346,ic:'🏢',col:'#d9805f'},
+ {id:'truoc',x:322,y:352,ic:'🍜',col:'#ff5f97'},
+ {id:'vila',x:78,y:474,ic:'🏡',col:'#4caf6a'},
+ {id:'hem',x:340,y:482,ic:'🐈',col:'#a07a5c'}];
 function mapTab(){
- const tree=(x,y)=>`<circle cx="${x}" cy="${y}" r="9" fill="#5fa85f"/><rect x="${x-1.5}" y="${y+6}" width="3" height="7" fill="#7a5a3a"/>`;
- let g=`<rect width="400" height="500" fill="#cfe6b5"/>
- <rect y="168" width="400" height="22" fill="#e3d8c2"/><rect y="336" width="400" height="22" fill="#e3d8c2"/><rect x="136" width="20" height="500" fill="#e3d8c2"/><rect x="246" width="20" height="500" fill="#e3d8c2"/>
- <line x1="0" x2="400" y1="179" y2="179" stroke="#fff" stroke-dasharray="10 8" stroke-width="2"/><line x1="0" x2="400" y1="347" y2="347" stroke="#fff" stroke-dasharray="10 8" stroke-width="2"/>
- <ellipse cx="200" cy="425" rx="42" ry="28" fill="#9fd3ea" stroke="#6aa" stroke-width="2"/><text x="200" y="430" font-size="14" text-anchor="middle">🪷</text><text x="200" y="468" font-size="10" text-anchor="middle" fill="#45607a" font-weight="700">Hồ Gươm mini</text>
- ${tree(20,150)}${tree(165,215)}${tree(235,215)}${tree(385,215)}${tree(20,330)}${tree(165,385)}${tree(235,385)}${tree(385,330)}${tree(20,480)}${tree(385,480)}`;
- PLACES.forEach(p=>{
-  const a=AREAS.find(x=>x.id===p.id),name=p.n||a.n,on=S.area===p.id&&a;
-  let sub='';if(a){const [lb,co]=crowdLbl(a);sub=`<text y="62" text-anchor="middle" font-size="10" font-weight="800" fill="${co}" stroke="#fff" stroke-width="2.5" paint-order="stroke">${lb}</text>`}
-  g+=`<g transform="translate(${p.x},${p.y})" onclick="openPlace('${p.id}')" style="cursor:pointer">${on?'<rect x="-52" y="-58" width="104" height="124" rx="14" fill="none" stroke="#ff4f8b" stroke-width="3" stroke-dasharray="6 4"/>':''}<rect x="-52" y="-58" width="104" height="124" fill="transparent"/>${bldSvg(p.id)}<text y="48" text-anchor="middle" font-size="11.5" font-weight="800" fill="#5a2d41" stroke="#fff" stroke-width="3" paint-order="stroke">${name}</text>${sub}${on?'<text y="-52" text-anchor="middle" font-size="14">📍</text>':''}</g>`;
+ const W=400,H=560;
+ const SEG=[[[250,-20],[330,80],[120,150],[170,260]],[[170,260],[220,370],[300,400],[250,580]]];
+ const bez=(s,t)=>{const P=SEG[s],u=1-t,a=u*u*u,b=3*u*u*t,c=3*u*t*t,d=t*t*t;
+  return{x:a*P[0][0]+b*P[1][0]+c*P[2][0]+d*P[3][0],y:a*P[0][1]+b*P[1][1]+c*P[2][1]+d*P[3][1]}};
+ const tan=(s,t)=>{const P=SEG[s],u=1-t;let x=u*u*(P[1][0]-P[0][0])+2*u*t*(P[2][0]-P[1][0])+t*t*(P[3][0]-P[2][0]),y=u*u*(P[1][1]-P[0][1])+2*u*t*(P[2][1]-P[1][1])+t*t*(P[3][1]-P[2][1]);const l=Math.hypot(x,y);return{x:x/l,y:y/l}};
+ const RIV=`M${SEG[0][0]} C${SEG[0][1]} ${SEG[0][2]} ${SEG[0][3]} C${SEG[1][1]} ${SEG[1][2]} ${SEG[1][3]}`;
+ const sp=p=>{let d=`M${p[0][0]},${p[0][1]}`;for(let i=0;i<p.length-1;i++){const a=p[i-1]||p[i],b=p[i],c=p[i+1],e=p[i+2]||c;d+=` C${(b[0]+(c[0]-a[0])/6).toFixed(1)},${(b[1]+(c[1]-a[1])/6).toFixed(1)} ${(c[0]-(e[0]-b[0])/6).toFixed(1)},${(c[1]-(e[1]-b[1])/6).toFixed(1)} ${c[0]},${c[1]}`}return d};
+ const LAND='M60,40 C140,15 240,35 330,30 C380,30 392,90 385,150 C378,210 396,260 386,320 C376,390 392,450 372,500 C342,542 250,546 180,540 C110,534 40,542 22,497 C8,452 24,402 18,342 C10,282 26,232 16,172 C8,112 20,62 60,40 Z';
+ const tree=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#5fa85f" stroke="#3f8a47" stroke-width="1"/><circle cx="${x-r*.3}" cy="${y-r*.3}" r="${r*.45}" fill="#8cd18a" opacity=".75"/>`;
+ const bridge=(s,t)=>{const p=bez(s,t),n=tan(s,t),ang=Math.atan2(n.x,-n.y)*180/Math.PI;let r=`<g transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)}) rotate(${ang.toFixed(1)})"><rect x="-47" y="-9" width="94" height="18" rx="3" fill="#b98550" stroke="#6e4a26" stroke-width="2"/>`;for(let x=-40;x<=40;x+=8)r+=`<line x1="${x}" x2="${x}" y1="-9" y2="9" stroke="#8d6236" stroke-width="1.4"/>`;r+=`<line x1="-47" x2="47" y1="-9" y2="-9" stroke="#e8d7b8" stroke-width="2.4"/><line x1="-47" x2="47" y1="9" y2="9" stroke="#e8d7b8" stroke-width="2.4"/></g>`;return r};
+ const ends=(s,t,L)=>{const p=bez(s,t),n=tan(s,t);return[[p.x-(-n.y)*L,p.y-n.x*L],[p.x+(-n.y)*L,p.y+n.x*L]]};
+ let g=`<defs><clipPath id="mpLand"><path d="${LAND}"/></clipPath><pattern id="mpGr" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="3" cy="4" r="1" fill="#b8e09f"/><circle cx="10" cy="10" r="1.1" fill="#e0f4cf"/><circle cx="11" cy="3" r=".8" fill="#ffd1e0"/></pattern></defs>
+ <rect width="${W}" height="${H}" fill="#8fd0ea"/>
+ <g fill="none" stroke="#c4ebf8" stroke-width="1.6" stroke-linecap="round" opacity=".9"><path d="M6,70 q6,-5 12,0 t12,0"/><path d="M370,18 q6,-5 12,0 t12,0"/><path d="M4,300 q6,-5 12,0 t12,0"/><path d="M382,420 q6,-5 12,0"/><path d="M8,545 q6,-5 12,0 t12,0"/><path d="M360,548 q6,-5 12,0 t12,0"/><path d="M120,10 q6,-5 12,0 t12,0"/></g>
+ <path d="${LAND}" fill="#f4e6b8" stroke="#f4e6b8" stroke-width="12" stroke-linejoin="round"/>
+ <path d="${LAND}" fill="#c9e9b0"/><path d="${LAND}" fill="url(#mpGr)"/>
+ <g clip-path="url(#mpLand)"><ellipse cx="60" cy="210" rx="70" ry="95" fill="#bfe3a4" opacity=".6"/><ellipse cx="350" cy="400" rx="60" ry="90" fill="#bfe3a4" opacity=".55"/><ellipse cx="200" cy="40" rx="60" ry="26" fill="#d6efbe" opacity=".7"/>
+ <path d="${RIV}" fill="none" stroke="#f4e6b8" stroke-width="56" stroke-linejoin="round"/></g>
+ <path d="${RIV}" fill="none" stroke="#8fd0ea" stroke-width="40" stroke-linejoin="round"/>
+ <path d="${RIV}" fill="none" stroke="#b9e6f7" stroke-width="22" stroke-linejoin="round" clip-path="url(#mpLand)"/>
+ <path d="${RIV}" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="6 16" opacity=".7" clip-path="url(#mpLand)"><animate attributeName="stroke-dashoffset" from="0" to="-44" dur="3s" repeatCount="indefinite"/></path>`;
+ /* đường */
+ const e1=ends(0,1,46),e2=ends(1,.5,46),e3=ends(0,.5,46);
+ const roads=[
+  [[68,104],[92,160],[92,214],[84,282],[76,346],[66,410],[78,474]],
+  [[334,92],[352,160],[326,222],[346,290],[322,352],[350,420],[340,482]],
+  [[84,282],e1[0],e1[1],[272,252],[346,290]],
+  [[66,410],[132,428],e2[0],e2[1],[322,352]],
+  [[92,214],[128,186],e3[0],e3[1],[290,108],[334,92]],
+  [[326,222],[306,160],[290,108]]
+ ];
+ roads.forEach(r=>{const d=sp(r);g+=`<path d="${d}" fill="none" stroke="#d3bf92" stroke-width="12" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#f7edd2" stroke-width="8.5" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="5 6" stroke-linecap="round" opacity=".9"/>`});
+ g+=bridge(0,1)+bridge(1,.5)+bridge(0,.5);
+ /* 9 rồng */
+ [[0,.16],[0,.36],[0,.56],[0,.78],[1,.17],[1,.33],[1,.68],[1,.82],[1,.94]].forEach(([s,t],i)=>{const p=bez(s,t);g+=`<g><animateTransform attributeName="transform" type="translate" values="0,0;0,-2.5;0,0" dur="${(2.4+i*.17).toFixed(2)}s" repeatCount="indefinite"/><text x="${p.x.toFixed(1)}" y="${(p.y+5).toFixed(1)}" font-size="14" text-anchor="middle">🐉</text></g>`});
+ const lp=bez(0,.4);
+ g+=`<text x="${(lp.x+4).toFixed(1)}" y="${(lp.y+3).toFixed(1)}" font-size="10" text-anchor="middle" font-weight="800" fill="#1f5f86" stroke="#e3f6fd" stroke-width="3" paint-order="stroke">Sông Chín Rồng</text>`;
+ /* hồ + cây */
+ g+=`<g transform="translate(18,0)"><ellipse cx="170" cy="512" rx="36" ry="20" fill="#9fd3ea" stroke="#f4e6b8" stroke-width="3"/><ellipse cx="164" cy="508" rx="22" ry="10" fill="#bfe8f8" opacity=".8"/><ellipse cx="172" cy="513" rx="9" ry="4.5" fill="#8fbf7a"/><rect x="169" y="504" width="6" height="9" fill="#cdbb9c" stroke="#8a7a5c" stroke-width=".7"/><polygon points="167,504 172,498 177,504" fill="#b5442e"/><text x="146" y="518" font-size="10" text-anchor="middle">🪷</text><text x="196" y="508" font-size="10" text-anchor="middle">🪷</text><text x="190" y="520" font-size="10" text-anchor="middle">🐢</text><text x="170" y="484" text-anchor="middle" font-size="10.5" font-weight="800" fill="#45607a" stroke="#fff" stroke-width="3" paint-order="stroke">Hồ Gươm mini</text></g>`;
+ [[40,160,9],[34,262,8],[30,300,7],[34,420,8],[132,128,8],[142,150,7],[128,326,9],[120,380,8],[138,452,8],[110,540,7],[372,160,8],[368,280,9],[300,150,8],[284,296,7],[372,420,8],[366,520,7],[210,66,7],[304,60,7],[40,70,7],[352,40,7],[226,230,0]].forEach(([x,y,r])=>{if(r)g+=tree(x,y,r)});
+ /* ghim các khu */
+ const PIN='M0,0 C-10,-14 -19,-24 -19,-35 A19,19 0 1 1 19,-35 C19,-24 10,-14 0,0 Z';
+ PLACES.forEach((p,i)=>{
+  const a=AREAS.find(x=>x.id===p.id),name=p.n||a.n,on=S.area===p.id&&a,sc=p.id==='truoc'?1.18:1;
+  let sub='';if(a){const [lb,co]=crowdLbl(a);sub=`<text y="${p.id==='truoc'?31:27}" text-anchor="middle" font-size="10" font-weight="800" fill="${co}" stroke="#fff" stroke-width="2.5" paint-order="stroke">${lb}</text>`}
+  g+=`<g transform="translate(${p.x},${p.y})" onclick="openPlace('${p.id}')" style="cursor:pointer"><ellipse cx="0" cy="-14" rx="${p.id==='truoc'?56:50}" ry="${p.id==='truoc'?46:42}" fill="${p.col}" opacity=".16" stroke="${p.col}" stroke-width="1.6" stroke-dasharray="4 4"/><rect x="-52" y="-62" width="104" height="94" fill="transparent"/>
+  ${on?`<circle r="8" fill="none" stroke="#ff4f8b" stroke-width="3"><animate attributeName="r" values="8;30" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="1.6s" repeatCount="indefinite"/></circle>`:''}
+  <ellipse cx="0" cy="1" rx="9" ry="3.2" fill="#000" opacity=".22"/>
+  <g transform="scale(${sc})">${on?'<animateTransform attributeName="transform" additive="sum" type="translate" values="0,0;0,-4;0,0" dur="1.1s" repeatCount="indefinite"/>':''}<path d="${PIN}" fill="${p.col}" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="0" cy="-35" r="13.5" fill="#fff"/><text y="-29.5" text-anchor="middle" font-size="17">${p.ic}</text></g>
+  <text y="${p.id==='truoc'?18:15}" text-anchor="middle" font-size="11" font-weight="800" fill="#5a2d41" stroke="#fff" stroke-width="3.2" paint-order="stroke">${name}</text>${sub}</g>`;
  });
- return `<div style="padding:8px 12px"><h2 style="margin:4px 0 6px">🗺️ Bản đồ khu dân cư</h2><small>Chạm vào một khu để xem thông tin và thuê mặt bằng. Mức đông khách đổi mỗi ngày.</small>
- <div class="card" style="padding:0;overflow:hidden;margin-top:8px;border-radius:18px"><svg viewBox="0 0 400 500" style="width:100%;height:auto;display:block;font-family:var(--f-title)">${g}</svg></div>
+ g+=`<g transform="translate(364,532)"><circle r="14" fill="#fffaf0" stroke="#b79b63" stroke-width="1.5"/><polygon points="0,-11 3.2,0 0,11 -3.2,0" fill="#d9534f"/><polygon points="0,11 3.2,0 0,0 -3.2,0" fill="#6b3a4e" opacity=".0"/><text y="-15" text-anchor="middle" font-size="7.5" font-weight="800" fill="#6b3a4e">B</text></g>`;
+ return `<div style="padding:8px 12px"><h2 style="margin:4px 0 6px">🗺️ Bản đồ khu dân cư</h2><small>Chạm vào một ghim để xem thông tin và thuê mặt bằng. Mức đông khách đổi mỗi ngày.</small>
+ <div class="card" style="padding:0;overflow:hidden;margin-top:8px;border-radius:18px"><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;font-family:var(--f-title)">${g}</svg></div>
  <button class="pri" onclick="S.tab='shop';sfx('click');render()">‹ Về quán</button></div>`;
 }
 function openPlace(id){
@@ -2641,7 +2687,7 @@ function stationSvg(){
  <rect x="78" y="146" width="56" height="52" fill="#9ed0e6" stroke="#556" stroke-width="2"/><rect x="66" y="146" width="12" height="52" fill="#2e7d32"/><rect x="134" y="146" width="12" height="52" fill="#2e7d32"/><line x1="106" x2="106" y1="146" y2="198" stroke="#556" stroke-width="2"/>
  <rect x="226" y="146" width="56" height="52" fill="#9ed0e6" stroke="#556" stroke-width="2"/><rect x="214" y="146" width="12" height="52" fill="#2e7d32"/><rect x="282" y="146" width="12" height="52" fill="#2e7d32"/><line x1="254" x2="254" y1="146" y2="198" stroke="#556" stroke-width="2"/>
  <path d="M158,234 V184 a22,22 0 0 1 44,0 V234 Z" fill="#6b4a2a" stroke="#3a2a1a" stroke-width="2"/><path d="M168,234 V188 a12,12 0 0 1 24,0 V234 Z" fill="#9ed0e6" opacity=".7"/><rect x="146" y="234" width="68" height="8" fill="#bbb"/>
- <line x1="338" y1="14" x2="338" y2="240" stroke="#666" stroke-width="4"/><rect x="340" y="16" width="56" height="38" fill="#da251d"/><text x="368" y="44" font-size="26" text-anchor="middle" fill="#ffde00">★</text>
+ <line x1="326" y1="12" x2="326" y2="240" stroke="#666" stroke-width="4"/><path d="M328,14 H397 L389,38 L397,62 H328 Z" fill="#fffbea" stroke="#b8860b" stroke-width="3" stroke-linejoin="round"/><path d="M333,19 H386 L380,38 L386,57 H333 Z" fill="none" stroke="#b8860b" stroke-width="1"/><text x="358" y="35" font-size="9" text-anchor="middle" fill="#8b1a1a" font-weight="800" font-family="Georgia,serif">CỘNG HÒA</text><text x="357" y="50" font-size="11" text-anchor="middle" fill="#8b1a1a" font-weight="800" font-family="Georgia,serif">XHCN ...</text>
  <rect x="0" y="246" width="400" height="22" fill="#c62828"/><text x="200" y="262" font-size="13" text-anchor="middle" fill="#ffe14d" font-weight="800" font-family="Baloo 2,sans-serif">VÌ NHÂN DÂN PHỤC VỤ</text>
  <rect x="26" y="170" width="6" height="66" fill="#7a5a3a"/><circle cx="29" cy="160" r="22" fill="#e0452e"/><circle cx="16" cy="172" r="14" fill="#e85a3a"/><circle cx="42" cy="172" r="14" fill="#d83a26"/></svg>`;
 }
@@ -2660,7 +2706,7 @@ function openReport(){
  const th=(S.thieves||[]).filter(x=>x.st==='open');if(!th.length){toast('Không có ai quỵt tiền');return}
  sfx('click');
  $('#modal').innerHTML=`<div class="mb" style="text-align:left;background:#fffef5;border:4px double #9b2c2c;font-family:Georgia,serif">
- <div style="text-align:center;font-size:11px;letter-spacing:.5px;color:#7a5a1a">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br><b>Độc lập – Tự do – Hạnh phúc</b></div>
+ <div style="text-align:center;font-size:11px;letter-spacing:.5px;color:#7a5a1a">CỘNG HÒA XÃ HỘI CHỦ NGHĨA ...<br><b>Độc lập – Tự do – Hạnh phúc</b></div>
  <h3 style="text-align:center;color:#9b2c2c;margin:8px 0 2px;font-family:Georgia,serif">ĐƠN TRÌNH BÁO MẤT TRỘM</h3><div style="text-align:center;font-size:13px">Kính gửi: <b>Công an phường</b></div>
  <div style="font-size:13px;margin-top:8px">Tôi tên là:</div><input id="rpName" maxlength="30" placeholder="Họ và tên người làm đơn">
  <div style="font-size:13px">Chủ cơ sở: <b>${S.name}</b> · Ngày ${S.day}</div>
