@@ -243,15 +243,16 @@ function evtN(e){return currentLang==='en'?(e.n_en||e.n):e.n}
 function evtD(e){return currentLang==='en'?(e.d_en||e.d):e.d}
 function currentEvent(){return DAY_EVENTS.find(e=>e.id===(S.eventId||'none'))||DAY_EVENTS[DAY_EVENTS.length-1]}
 const STAFF=[
-  {id:'phucvu',name:'Lan',n:'Phục vụ',n_en:'Waitress',e:'🧑‍🍳',d:'Tự giao món khi bạn bận. Lương 80K/ngày.',d_en:'Auto-serves when busy. Wage 80K/day.',hire:800000,sal:80000},
-  {id:'bep',name:'Hùng',n:'Bếp phụ',n_en:'Kitchen help',e:'👨‍🍳',d:'Giảm hao hụt 10%. Lương 100K/ngày.',d_en:'+10% stock kept. Wage 100K/day.',hire:1000000,sal:100000},
-  {id:'ship',ship:1,name:'Tuấn',n:'Shipper Gréb Fút',n_en:'Gréb Fút courier',e:'🛵',d:'Vào quán gọi món rồi đi giao đơn Gréb Fút. Cấp càng cao càng nhiều đơn. Lương 70K/ngày.',d_en:'Orders at the shop then delivers for Gréb Fút. Wage 70K/day.',hire:700000,sal:70000},
-  {id:'ship2',ship:1,name:'Hải',n:'Shipper Blue Ngon',n_en:'Blue Ngon courier',e:'🛵',d:'Vào quán gọi món rồi đi giao đơn Blue Ngon. Cấp càng cao càng nhiều đơn. Lương 70K/ngày.',d_en:'Orders at the shop then delivers for Blue Ngon. Wage 70K/day.',hire:700000,sal:70000},
-  {id:'ship3',ship:1,name:'Long',n:'Shipper Bê Fút',n_en:'Bê Fút courier',e:'🛵',d:'Vào quán gọi món rồi đi giao đơn Bê Fút. Cấp càng cao càng nhiều đơn. Lương 70K/ngày.',d_en:'Orders at the shop then delivers for Bê Fút. Wage 70K/day.',hire:700000,sal:70000},
-  {id:'ship4',ship:1,name:'Dũng',n:'Shipper Shịpé Fút',n_en:'Shịpé Fút courier',e:'🛵',d:'Vào quán gọi món rồi đi giao đơn Shịpé Fút. Cấp càng cao càng nhiều đơn. Lương 70K/ngày.',d_en:'Orders at the shop then delivers for Shịpé Fút. Wage 70K/day.',hire:700000,sal:70000}
+  {id:'phucvu',name:'Phạm Thu Lan',n:'Phục vụ',n_en:'Waitress',e:'🧑‍🍳',d:'Tự giao món khi bạn bận. Lương 80K/ngày.',d_en:'Auto-serves when busy. Wage 80K/day.',hire:800000,sal:80000},
+  {id:'bep',name:'Võ Quốc Hùng',n:'Bếp phụ',n_en:'Kitchen help',e:'👨‍🍳',d:'Giảm hao hụt 10%. Lương 100K/ngày.',d_en:'+10% stock kept. Wage 100K/day.',hire:1000000,sal:100000},
+  {id:'ship',ship:1,name:'Đặng Anh Tuấn',n:'Shipper Gréb Fút',n_en:'Gréb Fút courier',e:'🛵',d:'Vào quán gọi món rồi đi giao đơn Gréb Fút. Cấp càng cao càng nhiều đơn. Lương 70K/ngày.',d_en:'Orders at the shop then delivers for Gréb Fút. Wage 70K/day.',hire:700000,sal:70000},
+  {id:'ship2',ship:1,name:'Bùi Minh Hải',n:'Shipper Blue Ngon',n_en:'Blue Ngon courier',e:'🛵',d:'Vào quán gọi món rồi đi giao đơn Blue Ngon. Cấp càng cao càng nhiều đơn. Lương 70K/ngày.',d_en:'Orders at the shop then delivers for Blue Ngon. Wage 70K/day.',hire:700000,sal:70000},
+  {id:'ship3',ship:1,name:'Hoàng Thành Long',n:'Shipper Bê Fút',n_en:'Bê Fút courier',e:'🛵',d:'Vào quán gọi món rồi đi giao đơn Bê Fút. Cấp càng cao càng nhiều đơn. Lương 70K/ngày.',d_en:'Orders at the shop then delivers for Bê Fút. Wage 70K/day.',hire:700000,sal:70000},
+  {id:'ship4',ship:1,name:'Ngô Tiến Dũng',n:'Shipper Shịpé Fút',n_en:'Shịpé Fút courier',e:'🛵',d:'Vào quán gọi món rồi đi giao đơn Shịpé Fút. Cấp càng cao càng nhiều đơn. Lương 70K/ngày.',d_en:'Orders at the shop then delivers for Shịpé Fút. Wage 70K/day.',hire:700000,sal:70000},
+  {id:'mgr',name:'Linh',n:'Quản lý nhập hàng',n_en:'Purchasing manager',e:'🧑‍💼',d:'Tự nhập hàng khi sắp hết, chỉ trả bằng tiền trong Zui Zẻ Bank. Cấp càng cao nhập càng đầy kho. Lương 150K/ngày.',d_en:'Auto-restocks using Zui Ze Bank funds.',hire:2000000,sal:150000}
 ];
-const NAMES_VI=['anh Nam','chị Lan','bác Tư','cô Mai','bạn Khoa','chị Hoa','anh Tuấn','bà Năm','chú Ba','chị Thảo'];
-const NAMES_EN=['Alex','Mia','Uncle Tom','Aunt May','Chris','Hana','Ryan','Mrs. Nga','Mr. Ba','Thao'];
+const NAMES_VI=['Nguyễn Văn Nam','Trần Thị Mai','Lê Hoàng Khoa','Phạm Thu Hoa','Hoàng Minh Tuấn','Vũ Ngọc Thảo','Đặng Quốc Bảo','Bùi Thanh Hà','Đỗ Gia Huy','Ngô Phương Anh','Dương Tuấn Kiệt','Lý Bảo Châu','Phan Đức Thịnh','Huỳnh Mỹ Duyên','Trịnh Công Sơn'];
+const NAMES_EN=['Alex Carter','Mia Nguyen','Tom Becker','May Tanaka','Chris Morgan','Hana Kim','Ryan Brooks','Nga Tran','Ba Le','Thao Pham','Lucas Silva','Emma Wilson'];
 const ICONS=['👨','👩','🧑','👴','👵'];
 
 let currentLang='vi';
@@ -279,7 +280,7 @@ vi:{
   msgTitle:'Tin nhắn',newMsg:'Mới',noMsg:'Chưa có tin nhắn.',quickReply:'Chọn cách trả lời:',
   freeReply:'Hoặc viết tự do:',backup:'Sao lưu tiến trình',restore:'Khôi phục từ mã',
   backupDone:'Đã copy mã sao lưu!',restoreOk:'Khôi phục thành công!',restoreBad:'Mã không hợp lệ',
-  credit:'Dev',guide:'Hướng dẫn',whatsNew:'Có gì mới',dayLen:'Thời gian bán mỗi ngày',
+  credit:'Dev',guide:'Hướng dẫn',whatsNew:'Có j hót',dayLen:'Thời gian bán mỗi ngày',
   min:'phút',theme:'Giao diện',sound:'Âm thanh / Nhạc nền',sfxLab:'Hiệu ứng',musicLab:'Nhạc nền',
   pickMusic:'Chọn file .mp3',musicFolder:'Thư mục music/bgm.mp3',pause:'Tạm dừng',resume:'Tiếp tục',
   on:'Bật',off:'Tắt',guideBack:'‹ Quay lại',musicPlaying:'Đang phát',musicNone:'Chưa có nhạc'
@@ -332,7 +333,7 @@ function defaultS(){
   const sell={};MENU.forEach(m=>sell[m.id]=m.priceDef);
   return {
     phase:'title',day:1,money:500000,name:'Phở Hà Lội',
-    stock,sell,up:{speed:0,deco:0,fr:0,sec:0,wh:0},staff:{phucvu:false,bep:false,ship:false,ship2:false,ship3:false,ship4:false},
+    stock,sell,up:{speed:0,deco:0,fr:0,sec:0,wh:0},staff:{phucvu:false,bep:false,ship:false,ship2:false,ship3:false,ship4:false,mgr:false},
     rating:3.5,tab:'shop',spent:0,thieves:[],cases:[],rentPaid:null,hist:[],certs:[],rec:null,tax:null,area:'truoc',crowd:{},rng:1,insp:null,sum:null,fbs:[],msgs:[],th:null,msgId:1,eventId:'none'
   };
 }
@@ -369,7 +370,7 @@ let soundOn=true,sfxOn=true,musicOn=true,actx=null;
 let dayMinutes=2;
 try{const _d=parseInt(localStorage.getItem('pho_daymin'),10);if([2,4,6,8].includes(_d))dayMinutes=_d}catch(e){}
 let bgmAudio=null, bgmObjectUrl=null, bgmName='';
-const VERSION='1.7';
+const VERSION='1.8';
 const DAY_OPTS=[2,4,6,8];
 
 /* ===== THEMES ===== */
@@ -1110,6 +1111,7 @@ const CUST_W=900, CUST_H=560;
 const CUST_SLOT_X0=20, CUST_SLOT_W=200, CUST_SLOTS=3;
 const CUST_HEAD_Y=335, STAFF_HEAD_Y=376, CUST_NAME_Y=508;
 const CUST_FONT='"Baloo 2","Nunito",system-ui,sans-serif';
+function fitName(ctx,txt,maxW,size){let f=size;ctx.font=`bold ${f}px ${CUST_FONT}`;while(f>12&&ctx.measureText(txt).width>maxW){f--;ctx.font=`bold ${f}px ${CUST_FONT}`}}
 function hashStr(str){let h=0;for(let i=0;i<str.length;i++)h=(h*31+str.charCodeAt(i))|0;return Math.abs(h)}
 function wrapLines(ctx,text,maxW){
   const words=String(text).split(' ');const lines=[];let line='';
@@ -1222,7 +1224,7 @@ function shipAvatar(pid,size){
 function drawStaffBust(ctx,cx,cy,sc,kind){
   {const P=PLATS.find(p=>p.sid===kind);if(P){drawShipper(ctx,cx,cy,sc,P.id);return}}
   ctx.save();
-  const lan=kind==='phucvu';
+  const lan=kind==='phucvu'||kind==='mgr';
   const skin=lan?'#f8d8ba':'#efcaa4';
   if(lan){
     ctx.fillStyle='#1e1e1e';
@@ -1233,7 +1235,7 @@ function drawStaffBust(ctx,cx,cy,sc,kind){
   ctx.fillStyle=lan?'#fff3d6':'#ffffff';
   rr(ctx,cx-16*sc,cy+15*sc,32*sc,27*sc,11*sc);ctx.fill();
   if(lan){
-    ctx.fillStyle='#66bb6a';                                                    // tạp dề
+    ctx.fillStyle=kind==='mgr'?'#7c6bd6':'#66bb6a';                                                    // tạp dề
     rr(ctx,cx-10*sc,cy+21*sc,20*sc,21*sc,5*sc);ctx.fill();
     ctx.fillStyle='#43a047';rr(ctx,cx-5*sc,cy+30*sc,10*sc,6*sc,2*sc);ctx.fill();
   }else{
@@ -1358,7 +1360,7 @@ function drawCustCanvas(){
       rr(ctx,cx-94,246,188,300,22);ctx.fill();ctx.stroke();
     }
     if(c2.isShip)drawShipper(ctx,cx,CUST_HEAD_Y,3.2,c2.plat);else drawCustBust(ctx,cx,CUST_HEAD_Y,3.2,c2.face||FACE_STYLES[0],c2.pat,hashStr(c2.n));
-    ctx.font=`bold 32px ${CUST_FONT}`;
+    fitName(ctx,c2.n+(c2.tag||''),190,32);
     strokeFill(ctx,c2.n+(c2.tag||''),cx,CUST_NAME_Y,sel?'#d81b60':'#5a2d41','#fff',8);
     const pv=Math.max(0,Math.min(100,c2.pat));
     ctx.fillStyle='rgba(0,0,0,.14)';rr(ctx,cx-70,CUST_NAME_Y+14,140,14,7);ctx.fill();
@@ -1382,7 +1384,7 @@ function drawCustCanvas(){
     hired.forEach((st,i)=>{
       const cx=xs[i];
       drawStaffBust(ctx,cx,STAFF_HEAD_Y,2.6,st.id);
-      ctx.font=`bold 30px ${CUST_FONT}`;
+      fitName(ctx,st.name,128,30);
       strokeFill(ctx,st.name,cx,CUST_NAME_Y,'#3f7d4e','#fff',8);
       ctx.font=`bold 22px ${CUST_FONT}`;
       strokeFill(ctx,staffN(st),cx,CUST_NAME_Y+30,'#7a4a5e','#fff',6);
@@ -1529,12 +1531,13 @@ function sxp(id){const o=(S.slv||{})[id]||{lv:1,xp:0};return o.lv>=10?'MAX':o.xp
 function staffSal(st){return Math.round(st.sal*(1+.15*(slv(st.id)-1)))}
 function staffXp(id,n){if(!S.staff[id])return;const m=S.slv=S.slv||{};const o=m[id]=m[id]||{lv:1,xp:0};if(o.lv>=10)return;o.xp+=n;const need=o.lv*20;if(o.xp>=need){o.xp-=need;o.lv++;toast('⭐ '+STAFF.find(x=>x.id===id).name+' lên cấp '+o.lv+'!');sfx('bell')}}
 function autoRestock(){
-  if(!S.staff.bep||slv('bep')<5)return;
-  let free=stockCap()-stockTotal(),spent=0,n=0;
+  if(!S.staff.mgr)return;const bk=S.bank=S.bank||{bal:0};
+  let free=stockCap()-stockTotal(),spent=0,n=0;const tg=6+slv('mgr');
   ITEMS.forEach(it=>{const have=S.stock[it.id]||0;if(have>=3||free<=0)return;
-    const q=Math.min(6-have,free),cost=itemBuyPrice(it)*q;if(S.money<cost)return;
-    S.money-=cost;R().buy+=cost;S.spent=(S.spent||0)+cost;S.stock[it.id]=have+q;free-=q;spent+=cost;n++});
-  if(n&&L)L.log.push(`📦 ${STAFF[1].name} tự nhập ${n} loại hàng · −${fmt(spent)}`);
+    const q=Math.min(tg-have,free),cost=itemBuyPrice(it)*q;if(bk.bal<cost)return;
+    bk.bal-=cost;R().buy+=cost;S.spent=(S.spent||0)+cost;S.stock[it.id]=have+q;free-=q;spent+=cost;n++});
+  if(n){staffXp('mgr',1);if(L)L.log.push(`📦 ${sName('mgr')} nhập ${n} loại hàng từ Zui Zẻ Bank · −${fmt(spent)}`)}
+  else if(L&&L.t%90===0&&ITEMS.some(it=>(S.stock[it.id]||0)<3))L.log.push('🏦 Quỹ Zui Zẻ Bank không đủ để nhập hàng!');
 }
 const PLATS=[{sid:'ship',id:'grab',n:'Gréb Fút',e:'🟢',cm:.20,c:'#1fb256',k:'#0e7a36'},{sid:'ship2',id:'blue',n:'Blue Ngon',e:'🔵',cm:.18,c:'#2f7de1',k:'#1b4fa0'},{sid:'ship3',id:'be',n:'Bê Fút',e:'🟡',cm:.22,c:'#ffd21f',k:'#c99a00'},{sid:'ship4',id:'shp',n:'Shịpé Fút',e:'🟠',cm:.15,c:'#ff6a2b',k:'#c2410c'}];
 function onlStat(pid,net){const o=S.onl=S.onl||{n:0,rev:0,by:{}};o.n++;o.rev+=net;const q=o.by[pid]=o.by[pid]||{n:0,rev:0};q.n++;q.rev+=net}
@@ -1554,7 +1557,8 @@ function onlCard(){
 function sName(id){return STAFF.find(x=>x.id===id).name}
 function staffStats(st){const lv=slv(st.id);
   if(st.id==='phucvu')return [['⚡ Tốc độ giao món',Math.round((.15+.04*lv)*100)+'%/nhịp'],['😊 Khách chậm mất kiên nhẫn','+'+(20+2*(lv-1))+'%']];
-  if(st.id==='bep')return [['🥬 Giảm hao hụt',(10+lv-1)+'%'],['📦 Tự nhập hàng',lv>=5?'✅ Đã mở':'🔒 Cấp 5']];
+  if(st.id==='bep')return [['🥬 Giảm hao hụt',(10+lv-1)+'%'],['📦 Hao hụt thấp hơn','nhờ bảo quản tốt']];
+  if(st.id==='mgr')return [['🏦 Quỹ Zui Zẻ Bank',fmt((S.bank||{bal:0}).bal)],['📦 Nhập đến mức',(6+lv)+' mỗi loại']];
   const P=PLATS.find(p=>p.sid===st.id);return [['🛵 Tần suất lấy đơn',((.012+.002*lv)*100).toFixed(1)+'%/nhịp'],['💸 Hoa hồng '+P.n,Math.round(P.cm*100)+'%']];
 }
 const REL_LBL={none:'',crush:'😏 Đang tán tỉnh',dating:'💕 Đang yêu',married:'💍 Đã cưới',exes:'💔 Đã chia tay'};
@@ -1606,6 +1610,37 @@ function showDoc(k){
   <small>TM. UBND<br><i style="font-family:Georgia">Zui Vẻ</i></small></div>
   <button class="main o" style="margin-top:12px" onclick="$('#modal').style.display='none'">Đóng</button></div>`;
   $('#modal').style.display='flex';sfx('click');
+}
+/* ===== ZUI ZẺ BANK ===== */
+const PINK='zzbank_pin';
+const pinHash=p=>String(hashStr('zzb'+p+'!'));
+function bankBox(h){$('#modal').innerHTML=`<div class="mb" style="text-align:left"><div style="text-align:center;font-size:40px">🏧</div><h3 style="text-align:center;margin:2px 0 8px;color:#2e8b57">Zui Zẻ Bank · ATM</h3>${h}</div>`;$('#modal').style.display='flex'}
+function showBank(){
+  sfx('click');S.bank=S.bank||{bal:0};
+  const has=localStorage.getItem(PINK);
+  bankBox(has?`<small>Nhập mật khẩu ATM (4–6 số) để tiếp tục.</small><input id="bkPin" type="password" inputmode="numeric" maxlength="6" placeholder="••••" style="text-align:center;font-size:24px;letter-spacing:6px;margin:8px 0"><button class="o main" onclick="bankLogin()">Đăng nhập</button><button class="o" onclick="$('#modal').style.display='none'">Đóng</button>`
+  :`<small>Bạn chưa có tài khoản. Tạo mật khẩu ATM (4–6 số):</small><input id="bkPin" type="password" inputmode="numeric" maxlength="6" placeholder="Mật khẩu" style="text-align:center;font-size:22px;margin:8px 0"><input id="bkPin2" type="password" inputmode="numeric" maxlength="6" placeholder="Nhập lại mật khẩu" style="text-align:center;font-size:22px;margin-bottom:8px"><button class="o main" onclick="bankCreate()">Tạo tài khoản</button><button class="o" onclick="$('#modal').style.display='none'">Đóng</button>`);
+}
+function bankCreate(){const a=$('#bkPin').value,b=$('#bkPin2').value;
+  if(!/^\d{4,6}$/.test(a)){toast('Mật khẩu gồm 4–6 chữ số');sfx('bad');return}
+  if(a!==b){toast('Hai mật khẩu không khớp');sfx('bad');return}
+  try{localStorage.setItem(PINK,pinHash(a))}catch(e){}
+  sfx('coin');toast('🏦 Đã tạo tài khoản!');bankMain()}
+function bankLogin(){if(pinHash($('#bkPin').value)!==localStorage.getItem(PINK)){toast('❌ Sai mật khẩu');sfx('bad');return}bankMain()}
+function bankMain(){
+  const bk=S.bank=S.bank||{bal:0};
+  bankBox(`<div class="card" style="text-align:center"><small>Số dư trong bank</small><div style="font-size:26px;font-weight:800;color:#2e8b57">${fmt(bk.bal)}</div><small>Tiền mặt: ${fmt(S.money)}</small></div>
+  <input id="bkAmt" type="number" inputmode="numeric" min="1" placeholder="Số tiền" style="text-align:center;font-size:22px;margin:6px 0">
+  <div class="row" style="gap:6px;margin-bottom:8px">${[100000,500000,1000000].map(v=>`<button style="flex:1" onclick="$('#bkAmt').value=${v}">${v/1000}K</button>`).join('')}<button style="flex:1" onclick="$('#bkAmt').value=''">Xoá</button></div>
+  <div class="row" style="gap:8px"><button class="o main" style="flex:1" onclick="bankTx(1)">⬇️ Gửi</button><button class="o main" style="flex:1" onclick="bankTx(-1)">⬆️ Rút</button></div>
+  <small>Quản lý nhập hàng chỉ dùng tiền trong bank này.</small><button class="o" onclick="$('#modal').style.display='none';render()">Thoát ATM</button>`);
+}
+function bankTx(d){
+  const bk=S.bank,v=Math.floor(+$('#bkAmt').value||0);
+  if(v<=0){toast('Nhập số tiền');sfx('bad');return}
+  if(d>0){if(S.money<v){toast('💸 Không đủ tiền mặt');sfx('bad');return}S.money-=v;bk.bal+=v}
+  else{if(bk.bal<v){toast('🏦 Số dư không đủ');sfx('bad');return}bk.bal-=v;S.money+=v}
+  sfx('coin');save();toast((d>0?'Đã gửi ':'Đã rút ')+fmt(v));bankMain();
 }
 function tick(){
   if(!L||paused)return;
@@ -1753,7 +1788,9 @@ function serveBowl(auto){
       sfx('bad');toast(`🏃 ${c.n}`);save();render();return;
     }
   }
-  S.money+=price;L.rev+=price;L.served++;staffXp('bep',1);if(auto)staffXp('phucvu',2);{const r=R();r.rev+=price;r.revBy[c.order.menuId]=(r.revBy[c.order.menuId]||0)+price;r.cogs+=bowlCost(b)}
+  const fake=!c.isShip&&S.day>=2&&Math.random()<0.08,got=fake?0:price;
+  if(fake){(S.fakes=S.fakes||[]).unshift({id:Date.now()+Math.random(),n:c.n,type:c.type,day:S.day,amt:price,area:curArea().n,st:'open'});S.fakes=S.fakes.slice(0,30);L.log.push(`💸 ${c.n} trả bằng TIỀN GIẢ · ${fmt(price)}`);setTimeout(()=>toast('💸 Phát hiện tiền giả từ '+c.n),300)}
+  S.money+=got;L.rev+=got;L.served++;staffXp('bep',1);if(auto)staffXp('phucvu',2);{const r=R();r.rev+=got;r.revBy[c.order.menuId]=(r.revBy[c.order.menuId]||0)+got;r.cogs+=bowlCost(b)}
   let sc=3.5+(c.pat/100)*1.3+S.up.deco*0.15+Math.random()*0.4-0.2+(currentEvent().scoreBonus||0);
   if(c.type==='kho')sc-=(c.pat>75?0.3:1);if(c.type==='nong'&&c.pat<50)sc-=1;if(c.type==='de')sc+=.5;
   sc=clamp(Math.round(sc),1,5);L.scores.push(sc);
@@ -1873,33 +1910,36 @@ function buy(id,qty){
   save();
   if(S.tab==='market'&&document.getElementById('mkCanvas')){headOnly();paintMarket()}else render();
 }
+let CART={};
+function cartInfo(){let n=0,sum=0;Object.keys(CART).forEach(id=>{const it=findItem(id);if(it&&CART[id]>0){n+=CART[id];sum+=CART[id]*itemBuyPrice(it)}});return{n,sum}}
+function cartBar(){const c=cartInfo();return `<button class="pri" style="margin:8px 12px 0;width:calc(100% - 24px)" onclick="openCart()">🛒 Giỏ hàng (${c.n}) · ${fmt(c.sum)}</button>`}
 function openBuyModal(id){
-  const it=findItem(id);if(!it)return;
-  const unit=itemBuyPrice(it);
-  const disc=currentEvent().marketMul&&currentEvent().marketMul<1;
-  $('#modal').innerHTML=`<div class="mb" style="text-align:left">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
-      <div style="width:56px;flex:none">${itemIconHtml(it.id,56)}</div>
-      <div class="grow"><b style="font-size:18px">${itemN(it)}</b><br>
-      <span style="color:var(--acc);font-weight:800;font-size:16px">${unit.toLocaleString(currentLang==='en'?'en-US':'vi-VN')}₫${disc?' <small style="color:var(--ok)">(-20%)</small>':''}</span></div>
-    </div>
-    <label style="font-weight:700;font-size:14px">${currentLang==='en'?'Quantity':'Số lượng'}</label>
-    <div class="row" style="margin:8px 0 12px;gap:8px">
-      <button type="button" onclick="const i=document.getElementById('buyQty');i.value=Math.max(1,(+i.value||1)-5)">−5</button>
-      <input id="buyQty" type="number" min="1" max="999" value="5" inputmode="numeric" style="flex:1;font-size:22px;font-weight:800;text-align:center;padding:10px;border:2px solid var(--line);border-radius:12px;width:80px">
-      <button type="button" onclick="const i=document.getElementById('buyQty');i.value=Math.min(999,(+i.value||1)+5)">+5</button>
-    </div>
-    <div class="row" style="gap:8px;margin-bottom:6px">
-      <button type="button" style="flex:1" onclick="document.getElementById('buyQty').value=1">1</button>
-      <button type="button" style="flex:1" onclick="document.getElementById('buyQty').value=10">10</button>
-      <button type="button" style="flex:1" onclick="document.getElementById('buyQty').value=20">20</button>
-      <button type="button" style="flex:1" onclick="document.getElementById('buyQty').value=50">50</button>
-    </div>
-    <button class="o main" onclick="const q=Math.max(1,Math.min(999,Math.floor(+document.getElementById('buyQty').value||1)));$('#modal').style.display='none';buy('${id}',q)">${currentLang==='en'?'Buy':'Mua'}</button>
-    <button class="o" onclick="$('#modal').style.display='none'">${t('cancel')}</button>
-  </div>`;
-  $('#modal').style.display='flex';sfx('click');
-  setTimeout(()=>{const i=document.getElementById('buyQty');if(i){i.focus();i.select()}},80);
+  const it=findItem(id);if(!it)return;const unit=itemBuyPrice(it);
+  $('#modal').innerHTML=`<div class="mb" style="text-align:left"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><div style="width:56px;flex:none">${itemIconHtml(it.id,56)}</div>
+  <div class="grow"><b style="font-size:18px">${itemN(it)}</b><br><span style="color:var(--acc);font-weight:800">${fmt(unit)}</span> · <small>Trong giỏ: ${CART[id]||0}</small></div></div>
+  <div class="row" style="margin:8px 0 12px;gap:8px"><button type="button" onclick="const i=document.getElementById('buyQty');i.value=Math.max(1,(+i.value||1)-5)">−5</button>
+  <input id="buyQty" type="number" min="1" max="999" value="5" inputmode="numeric" style="flex:1;font-size:22px;font-weight:800;text-align:center;padding:10px;border:2px solid var(--line);border-radius:12px;width:80px">
+  <button type="button" onclick="const i=document.getElementById('buyQty');i.value=Math.min(999,(+i.value||1)+5)">+5</button></div>
+  <button class="o main" onclick="addCart('${id}')">🛒 Thêm vào giỏ</button><button class="o" onclick="$('#modal').style.display='none'">${t('cancel')}</button></div>`;
+  $('#modal').style.display='flex';sfx('click');setTimeout(()=>{const i=document.getElementById('buyQty');if(i){i.focus();i.select()}},80);
+}
+function addCart(id){const q=Math.max(1,Math.min(999,Math.floor(+document.getElementById('buyQty').value||1)));CART[id]=(CART[id]||0)+q;sfx('click');toast('🛒 +'+q+' × '+itemN(findItem(id)));$('#modal').style.display='none';if(S.tab==='market')render()}
+function cartSet(id,d){CART[id]=Math.max(0,(CART[id]||0)+d);if(!CART[id])delete CART[id];openCart()}
+function openCart(){
+  const c=cartInfo(),free=stockCap()-stockTotal();
+  const rows=Object.keys(CART).map(id=>{const it=findItem(id);return `<div class="row" style="padding:5px 0;border-bottom:1px dashed var(--line)"><span class="grow">${itemN(it)}<br><small>${fmt(itemBuyPrice(it))} × ${CART[id]}</small></span><button onclick="cartSet('${id}',-5)">−5</button><b style="width:34px;text-align:center">${CART[id]}</b><button onclick="cartSet('${id}',5)">+5</button></div>`}).join('')||'<small>Giỏ hàng trống. Chạm vào hàng ở chợ để thêm.</small>';
+  $('#modal').innerHTML=`<div class="mb" style="text-align:left;max-height:80vh;overflow:auto"><h3 style="margin:0 0 8px">🛒 Giỏ hàng</h3>${rows}
+  <div class="row" style="margin-top:8px"><span class="grow">Tổng ${c.n} món · chỗ kho còn ${free}</span><b>${fmt(c.sum)}</b></div>
+  <button class="o main" onclick="checkoutCart()" ${c.n?'':'disabled'}>Thanh toán</button>${c.n?'<button class="o" onclick="CART={};openCart()">Xoá giỏ</button>':''}<button class="o" onclick="$('#modal').style.display='none';render()">Đóng</button></div>`;
+  $('#modal').style.display='flex';
+}
+function checkoutCart(){
+  const c=cartInfo();if(!c.n)return;
+  if(c.n>stockCap()-stockTotal()){toast('📦 Kho không đủ chỗ cho cả giỏ');sfx('bad');return}
+  if(S.money<c.sum){toast('💸 Không đủ tiền');sfx('bad');return}
+  Object.keys(CART).forEach(id=>{S.stock[id]=(S.stock[id]||0)+CART[id]});
+  S.money-=c.sum;R().buy+=c.sum;S.spent=(S.spent||0)+c.sum;CART={};
+  sfx('coin');toast('✅ Đã thanh toán '+fmt(c.sum));save();$('#modal').style.display='none';render();
 }
 function upg(id){
   const u=UP.find(x=>x.id===id);if(!u)return;
@@ -2057,7 +2097,7 @@ function unreadMsg(){return (S.msgs||[]).filter(m=>m.done===null).length}
 
 /* ===== RENDER ===== */
 function headHtml(){
-  return `<div class="top" style="justify-content:center;position:relative"><button class="set-btn" style="position:absolute;left:12px;top:50%;transform:translateY(-50%)" onclick="openSettings()" title="${t('settings')}">⚙️</button><div style="text-align:center;padding:0 46px;min-width:0"><b style="font-size:22px;line-height:1.15;overflow-wrap:anywhere">${S.name}</b><small>${t('day')} ${S.day} · ${S.phase==='open'&&L?L.clock:t(S.phase)} · ${stars(Math.round(S.rating))}</small></div></div><div class="moneybox">💵 ${Math.floor(S.money).toLocaleString('en-US')} đ</div>`;
+  return `<div class="top" style="justify-content:center;position:relative"><button class="set-btn" style="position:absolute;left:12px;top:50%;transform:translateY(-50%)" onclick="openSettings()" title="${t('settings')}">⚙️</button><div style="text-align:center;padding:0 46px;min-width:0"><b style="font-size:22px;line-height:1.15;overflow-wrap:anywhere">${S.name}</b><small>${t('day')} ${S.day} · ${S.phase==='open'&&L?L.clock:t(S.phase)} · ${stars(Math.round(S.rating))}</small></div></div><div class="moneybox" style="min-width:290px;gap:22px;display:flex;justify-content:center;align-items:center"><b>💵 ${Math.floor(S.money).toLocaleString('en-US')} đ</b><b>🏧 ${Math.floor((S.bank&&S.bank.bal)||0).toLocaleString('en-US')} đ</b></div>`;
 }
 function tabsHtml(){
   if(!['prep','open'].includes(S.phase))return '';
@@ -2240,7 +2280,7 @@ function buildMkHits(){
 }
 
 function marketTab(){
-  return `<div class="stall-wrap mk-wrap"><div class="stall-canvas-box">
+  return cartBar()+`<div class="stall-wrap mk-wrap"><div class="stall-canvas-box">
     <canvas id="mkCanvas" width="900" height="${MK_H}"></canvas>
     <div id="mkHits" style="position:absolute;inset:0"></div>
   </div></div>`;
@@ -2313,7 +2353,7 @@ function upTab(){
   STAFF.forEach(st=>{
     const on=!!S.staff[st.id];
     h+=`<div class="card row"><div style="flex:none">${staffCanvasHtml(st.id,64,on)}</div><div class="grow"><b>${st.name}</b> · ${staffN(st)}<br><small>${staffD(st)}</small>
-    <br><small>⭐ Cấp ${slv(st.id)}/10 (${sxp(st.id)}) · ${t('salary')} ${fmt(staffSal(st))} · ${t('hireCost')} ${fmt(st.hire)}</small>${st.id==='bep'?'<br><small>Cấp 5+: tự nhập hàng khi sắp hết</small>':''}</div>
+    <br><small>⭐ Cấp ${slv(st.id)}/10 (${sxp(st.id)}) · ${t('salary')} ${fmt(staffSal(st))} · ${t('hireCost')} ${fmt(st.hire)}</small></div>
     <button onclick="hireStaff('${st.id}')" style="${on?'background:var(--bad);color:#fff':''}">${on?t('fire'):t('hire')}</button></div>`;
   });
   h+=`<h2>🎟️ ${currentLang==='en'?'Referral code':'Mã giới thiệu'}</h2>
@@ -2427,6 +2467,12 @@ function showWhatsNew(){
 <li>Days 1–3: only Beef pho; other broths locked 🔒</li>
 </ul>`
     :`<p><b>v${VERSION}</b></p><ul style="text-align:left;padding-left:18px">
+<li>🏦 Bản đồ có Zui Zẻ Bank: ATM gửi/rút tiền, có mật khẩu</li>
+<li>🧑‍💼 Quản lý nhập hàng (thuê 2tr): tự nhập hàng bằng tiền trong bank</li>
+<li>🛒 Chợ có giỏ hàng: chọn số lượng, thanh toán một lượt</li>
+<li>🛵 4 shipper đơn online, nhân viên có cấp và lương tăng theo cấp</li>
+<li>👥 Trang quản lý nhân viên, chuyện tình cảm trong quán</li>
+<li>📜 Giấy tờ kinh doanh trong sổ sách (dấu TP. Zui Zẻ)</li>
 <li>Logo mới ở trang chủ và màn hình loading</li>
 <li>Thêm Màu giao diện trong Cài đặt (12 màu)</li>
 <li>Thời gian bán mỗi ngày: 2 / 4 / 6 / 8 phút</li>
@@ -2537,7 +2583,7 @@ function bookTab(){
 function issueTax(){S.tax={amt:Math.floor(S.money*.1),due:S.day+3,post:0,base:S.money}}
 function showTax(){
  if(!S.tax)return;const d=S.tax.due-S.day;
- $('#modal').innerHTML=`<div class="mb" style="text-align:left;background:#fffdf8"><div class="row"><div style="width:52px;height:52px;border-radius:50%;background:#eee;display:grid;place-items:center;font-size:30px">👩‍💼</div><div><small>Chi cục Thuế khu vực</small><br><b style="font-size:19px">Chị Như Quỳnh</b></div></div>
+ $('#modal').innerHTML=`<div class="mb" style="text-align:left;background:#fffdf8"><div class="row"><div style="width:52px;height:52px;border-radius:50%;background:#eee;display:grid;place-items:center;font-size:30px">👩‍💼</div><div><small>Chi cục Thuế khu vực</small><br><b style="font-size:19px">Lê Như Quỳnh</b></div></div>
  <h3 style="color:#2d5a8c;margin:12px 0 8px">Tới kỳ nộp thuế TNCN</h3>
  <div style="border:3px solid #a9b8d0;border-radius:18px;padding:14px;text-align:center;background:#f3f6fa"><div style="font-size:36px;font-weight:800;color:#2d5a8c;font-family:var(--f-title)">${vn(S.tax.amt)}</div>
  <small style="color:#6b5a4e">Thuế 10% trên số tiền đang có (${vn(S.tax.base)}). Không được khấu trừ — nộp ngay tại đây hoặc trong Sổ sách.</small><div style="color:#b03a2e;font-weight:700;margin-top:6px">Hạn nộp còn ${d} ngày${S.tax.post?' (đã hẹn)':''}</div></div>
@@ -2550,7 +2596,7 @@ function payTax(){
  S.certs=[c,...(S.certs||[])];S.tax=null;sfx('coin');save();showCert(0,true);
 }
 function postponeTax(){
- if(S.tax.post){toast('Chị Như Quỳnh: "Hẹn một lần thôi nha!"');sfx('bad');return}
+ if(S.tax.post){toast('Lê Như Quỳnh: "Hẹn một lần thôi nha!"');sfx('bad');return}
  S.tax.post=1;S.tax.due+=2;S.tax.amt=Math.floor(S.tax.amt*1.05);toast('Gia hạn 2 ngày, phạt chậm nộp +5%');sfx('click');save();$('#modal').style.display='none';render();
 }
 function showCert(i,fresh){
@@ -2559,7 +2605,7 @@ function showCert(i,fresh){
  <div style="font-size:11px;letter-spacing:1px;color:#8a6a1a">CỘNG HÒA XÃ HỘI CHỦ NGHĨA ...<br>Độc lập – Tự do – Hạnh phúc</div>
  <h3 style="margin:10px 0 2px;color:#8b1a1a;font-family:Georgia,serif">GIẤY CHỨNG NHẬN NỘP THUẾ</h3><small>Thuế thu nhập cá nhân · Số ${c.no}</small>
  <div style="text-align:left;margin:12px 4px;font-size:14px;line-height:1.8">Người nộp thuế: <b>${S.name}</b><br>Ngày lập: <b>${c.date}</b><br>Thu nhập tính thuế: <b>${vn(c.base)}₫</b><br>Thuế suất: <b>10%</b><br>Số tiền đã nộp: <b style="color:#8b1a1a">${vn(c.amt)}₫</b></div>
- <div style="display:flex;justify-content:space-between;align-items:flex-end;font-size:12px"><span>Người nộp<br><i>(ký, ghi rõ họ tên)</i></span><span style="position:relative">Cán bộ thuế<br><b>Chị Như Quỳnh</b></span></div>
+ <div style="display:flex;justify-content:space-between;align-items:flex-end;font-size:12px"><span>Người nộp<br><i>(ký, ghi rõ họ tên)</i></span><span style="position:relative">Cán bộ thuế<br><b>Lê Như Quỳnh</b></span></div>
  <div style="position:absolute;right:20px;bottom:100px;transform:rotate(-14deg);border:4px solid #c0392b;color:#c0392b;font-weight:900;padding:4px 10px;border-radius:8px;font-size:17px;opacity:.85;font-family:var(--f-title)">ĐÃ NỘP THUẾ</div>
  <button class="o main" style="margin-top:16px" onclick="$('#modal').style.display='none';render()">${fresh?'Cất vào hồ sơ':'Đóng'}</button></div>`;
  $('#modal').style.display='flex';
@@ -2614,16 +2660,36 @@ const INSP=[
   {t:'Dạ… giấy khám đang ở nhà bà ngoại.',res:'fine',m:-180000,r:-.08,a:'Trong 3 ngày phải bổ sung, lần này nhắc nhở và phạt.'},
   {t:'Tụi em khỏe như trâu, không cần giấy.',res:'fun',m:-100000,r:-.02,a:'Trâu cũng phải có giấy. Ghi phạt.'}]}
 ];
+const INSPECTORS=[
+ {e:'🥣',t:'Đoàn kiểm tra ATTP',who:'Chi cục An toàn thực phẩm',need:'attp',ask:'xuất trình Giấy chứng nhận đủ điều kiện ATTP'},
+ {e:'🧯',t:'Đoàn kiểm tra PCCC',who:'Phòng Cảnh sát PCCC',need:'pccc',ask:'xuất trình Giấy xác nhận phòng cháy chữa cháy'},
+ {e:'🕵️',t:'Cán bộ quản lý thị trường',who:'Đội Quản lý thị trường',need:'lic',ask:'xuất trình Giấy phép kinh doanh'}];
 function maybeInspect(){
- if(!L||L.insp||S.day<3||L.t<12||L.t>getTicks()-12||Math.random()>.0028)return;
- L.insp=1;paused=true;clearInterval(timer);
- const I=rnd(INSP);L.iq=I;
- $('#modal').innerHTML=`<div class="mb" style="text-align:left"><div style="text-align:center;font-size:44px">🕵️</div><h3 style="text-align:center;margin:4px 0;color:var(--bad)">Kiểm tra ATTP đột xuất!</h3>
- <small>Đoàn liên ngành ghé quán giữa giờ bán, có phóng viên Báo Lá Cải đi kèm.</small>
- <div style="font-size:12px;margin-top:4px">📜 Bạn xuất trình: GPKD số ${S.docs?S.docs.lic.no:'—'}, ATTP số ${S.docs?S.docs.attp.no:'—'} (có dấu xác nhận TP. Zui Zẻ).</div>
- <div class="bub c" style="margin-top:8px">${I.q}</div><div class="sec-label">Bạn trả lời:</div>
- ${I.o.map((o,i)=>`<button class="opt" onclick="answerInsp(${i})">${o.t}</button>`).join('')}</div>`;
+ if(!L||L.insp)return;
+ if(S.nextInsp==null)S.nextInsp=S.day%2===0?S.day:S.day+1;
+ if(S.day<S.nextInsp)return;
+ if(L.inspAt==null)L.inspAt=12+Math.floor(Math.random()*Math.max(1,getTicks()-26));
+ if(L.t<L.inspAt)return;
+ if(!S.docs)issueDocs();
+ L.insp=1;S.nextInsp=S.day+2;paused=true;clearInterval(timer);
+ const I=rnd(INSPECTORS),order=['lic','attp','pccc'].sort(()=>Math.random()-.5);
+ L.ik={I,order};
+ $('#modal').innerHTML=`<div class="mb" style="text-align:left"><div style="text-align:center;font-size:44px">${I.e}</div><h3 style="text-align:center;margin:4px 0;color:var(--bad)">${I.t} đột xuất!</h3>
+ <small>${I.who} ghé quán giữa giờ bán, có phóng viên Báo Lá Cải đi kèm.</small>
+ <div class="bub c" style="margin-top:8px">Chào chủ quán <b>${S.name}</b>, yêu cầu <b>${I.ask}</b> ngay. Xuất trình sai giấy sẽ bị phạt 30% số tiền đang có!</div>
+ <div class="sec-label">Chọn giấy tờ để xuất trình (đối chiếu với số trong Sổ sách):</div>
+ ${order.map((k,i)=>`<button class="opt" onclick="pickDoc(${i})"><b>Giấy ${'ABC'[i]}</b> · Số ${S.docs[k].no.split('-').pop()}</button>`).join('')}</div>`;
  $('#modal').style.display='flex';sfx('bad');
+}
+function pickDoc(i){
+ const {I,order}=L.ik,ok=order[i]===I.need,dn=k=>DOCS.find(x=>x.k===k).n;
+ let msg,res;
+ if(ok){const m=100000;S.money+=m;R().inc+=m;S.rating=clamp(S.rating+.12,1,5);res='pass';msg=`<b class="g">+${fmt(m)}₫</b><br><small>Giấy tờ hợp lệ, đoàn ghi nhận quán làm ăn đàng hoàng. Đánh giá quán tăng.</small>`}
+ else{const f=Math.floor(S.money*.3);S.money-=f;R().fine+=f;S.rating=clamp(S.rating-.2,1,5);res='fine';msg=`<b class="r">−${fmt(f)}₫</b> <small>(30% số tiền hiện có)</small><br><small>Giấy đúng phải là <b>Giấy ${'ABC'[order.indexOf(I.need)]}</b>: ${dn(I.need)}. Đánh giá quán giảm.</small>`}
+ S.insp={res,day:S.day};
+ $('#modal').innerHTML=`<div class="mb"><div style="font-size:44px">${ok?'✅':'⚠️'}</div><div class="bub m" style="margin-left:0">Tôi xuất trình Giấy ${'ABC'[i]}.</div><div class="bub c">${I.e} ${ok?'Đúng giấy tờ rồi. Cảm ơn chủ quán đã hợp tác.':'Sai giấy tờ! Lập biên bản xử phạt hành chính.'}</div>${msg}
+ <button class="o main" onclick="$('#modal').style.display='none';paused=false;timer=setInterval(tick,TICK_MS);save();render()">Tiếp tục bán</button></div>`;
+ sfx(ok?'coin':'bad');
 }
 function answerInsp(i){
  const o=L.iq.o[i];
@@ -2696,7 +2762,8 @@ const PLACES=[
  {id:'cc',x:76,y:346,ic:'🏢',col:'#d9805f'},
  {id:'truoc',x:322,y:352,ic:'🍜',col:'#ff5f97'},
  {id:'vila',x:78,y:474,ic:'🏡',col:'#4caf6a'},
- {id:'hem',x:340,y:482,ic:'🐈',col:'#a07a5c'}];
+ {id:'hem',x:340,y:482,ic:'🐈',col:'#a07a5c'},
+ {id:'bank',x:200,y:455,n:'Zui Zẻ Bank',ic:'🏦',col:'#2e8b57'}];
 function mapTab(){
  const W=400,H=560;
  const SEG=[[[250,-20],[330,80],[120,150],[170,260]],[[170,260],[220,370],[300,400],[250,580]]];
@@ -2756,6 +2823,7 @@ function mapTab(){
 }
 function openPlace(id){
  sfx('click');const m=$('#modal');
+ if(id==='bank'){showBank();return}
  if(id==='news'||id==='police'){
   const isP=id==='police';
   m.innerHTML=`<div class="mb"><div style="font-size:46px">${isP?'🚓':'📰'}</div><h3 style="margin:4px 0">${isP?'Đồn Công An Phường':'Tòa soạn Báo Lá Cải'}</h3><p style="margin:0 0 10px;color:var(--mute)">${isP?'Trình báo mất trộm, nhận lại tiền khi bắt được đối tượng.':'Đọc tin giải trí (bịa hoàn toàn). Thỉnh thoảng báo viết cả về quán bạn.'}</p><button class="o main" onclick="$('#modal').style.display='none';S.tab='${isP?'police':'news'}';render()">Đi vào</button><button class="o" onclick="$('#modal').style.display='none'">Đóng</button></div>`;
@@ -2836,7 +2904,7 @@ function policeTab(){
  return `<div style="padding:8px 12px"><h2 style="margin:4px 0 8px">🚓 Đồn Công An Phường</h2><div class="card" style="padding:0;overflow:hidden">${stationSvg()}</div>
  <div class="card"><div class="row" style="align-items:flex-end"><div style="width:108px;flex:none">${officerSvg()}</div><div class="bub c" style="margin:0"><b>CA Phường:</b> ${say}</div></div></div>
  <button class="pri" style="margin:0 0 10px" onclick="openReport()" ${th.length?'':'disabled'}>📝 Trình báo mất trộm${th.length?` (${th.length} vụ)`:''}</button>
- <div class="sec-label">Hồ sơ vụ việc</div>${list}
+ ${(()=>{const fk=(S.fakes||[]).filter(x=>x.st==='open');return fk.length?`<button class="pri" style="margin:0 0 10px;background:#9b2c2c" onclick="openFakeReport()" ${fk.length>=3?'':'disabled'}>🚨 Biên bản tiền giả quy mô lớn (${fk.length}/3 vụ)</button>`:''})()}<div class="sec-label">Hồ sơ vụ việc</div>${list}
  <button class="pri" style="background:var(--line);color:var(--ink);box-shadow:none" onclick="S.tab='map';sfx('click');render()">‹ Về bản đồ</button></div>`;
 }
 function openReport(){
@@ -2874,6 +2942,28 @@ function resolveCases(){
 }
 
 
+function openFakeReport(){
+ const fk=(S.fakes||[]).filter(x=>x.st==='open');if(fk.length<3){toast('Chưa đủ 3 vụ để lập hồ sơ quy mô lớn');return}
+ const tot=fk.reduce((a,x)=>a+x.amt,0),no='BB-'+String(S.day).padStart(3,'0')+'/TG-'+fk.length;
+ sfx('click');
+ $('#modal').innerHTML=`<div class="mb" style="text-align:left;background:#fffef5;border:4px double #9b2c2c;font-family:Georgia,serif;max-height:86vh;overflow:auto">
+ <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#7a5a1a;text-align:center;gap:6px"><div><b>CÔNG AN TP. ZUI ZẺ</b><br>PHÒNG CẢNH SÁT HÌNH SỰ<br>Số: ${no}</div><div>CỘNG HÒA XÃ HỘI CHỦ NGHĨA ...<br><b>Độc lập – Tự do – Hạnh phúc</b></div></div>
+ <h3 style="text-align:center;color:#9b2c2c;margin:12px 0 4px;font-size:16px;line-height:1.35">BIÊN BẢN PHÁT HIỆN TÀNG TRỮ VÀ SỬ DỤNG TRÁI PHÉP TIỀN GIẢ QUY MÔ LỚN</h3>
+ <div style="text-align:center;font-size:12px">Hồi 16 giờ 45, ngày ${S.day}, tại: <b>${S.name}</b> – ${curArea().n}, TP. Zui Zẻ</div>
+ <div style="font-size:13px;margin-top:8px;line-height:1.55">Căn cứ camera an ninh và lời khai của chủ cơ sở, Công an TP. Zui Zẻ xác định có <b>${fk.length} đối tượng</b> đã tàng trữ và sử dụng trái phép tiền giả để thanh toán, tổng thiệt hại <b style="color:#c0392b">${fmt(tot)}₫</b>:</div>
+ ${fk.map((x,i)=>`<div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 8px;border:1px dashed #c9a84a;border-radius:8px;margin-top:5px"><span>${i+1}. <b>${x.n}</b> <small>(Ngày ${x.day})</small></span><b class="r">${fmt(x.amt)}₫</b></div>`).join('')}
+ <div style="font-size:12px;margin:10px 0 4px"><i>Số tiền giả được thu giữ làm vật chứng. Các đối tượng bị lập hồ sơ xử lý theo quy định của pháp luật.</i></div>
+ <div style="display:flex;justify-content:space-between;align-items:flex-end;margin:8px 0 10px;font-size:12px"><span style="text-align:center">Chủ cơ sở<br><i>(ký, ghi rõ họ tên)</i><br><b>${S.name}</b></span>
+ <div style="width:108px;height:108px;border:4px solid #c0392b;border-radius:50%;color:#c0392b;transform:rotate(-14deg);display:grid;place-items:center;text-align:center;font-weight:800;font-size:11px;line-height:1.3;opacity:.88;box-shadow:inset 0 0 0 3px #fffdf4,inset 0 0 0 5px #c0392b">CA TP. ZUI ZẺ<br>★<br>ĐÃ LẬP BIÊN BẢN</div>
+ <span style="text-align:center">Cán bộ lập biên bản<br><b>Thiếu úy Phan Minh Đức</b></span></div>
+ <button class="o main" onclick="signFakeReport()">Ký xác nhận · nhận lại ${fmt(tot)}₫</button><button class="o" onclick="$('#modal').style.display='none'">Để sau</button></div>`;
+ $('#modal').style.display='flex';
+}
+function signFakeReport(){
+ const fk=(S.fakes||[]).filter(x=>x.st==='open');if(fk.length<3)return;
+ const tot=fk.reduce((a,x)=>a+x.amt,0);fk.forEach(x=>x.st='closed');
+ S.money+=tot;R().inc+=tot;sfx('coin');toast('🚔 Công an thu hồi '+fmt(tot)+'₫ tiền hàng');save();$('#modal').style.display='none';render();
+}
 /* ===== BOOT ===== */
 load();
 loadStallBg();
