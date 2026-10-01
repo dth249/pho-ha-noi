@@ -2239,6 +2239,9 @@ function openSettings(){
     <div class="set-item" onclick="openReferral()"><span class="ico">🎟️</span><span class="lab">${currentLang==='en'?'Referral code':'Mã giới thiệu'}</span></div>
     <div class="set-item" onclick="doBackup()"><span class="ico">💾</span><span class="lab">${t('backup')}</span></div>
     <div class="set-item" onclick="doRestore()"><span class="ico">📥</span><span class="lab">${t('restore')}</span></div>
+    <div class="sec-label" style="margin:10px 0 6px">${currentLang==='en'?'Contact':'Liên hệ'}</div>
+    <a class="set-item" href="mailto:zemiken1120@gmail.com" style="text-decoration:none;color:inherit"><span class="ico">📧</span><span class="lab">Gmail<br><small style="font-weight:600;color:var(--mute)">zemiken1120@gmail.com</small></span><span class="val">${currentLang==='en'?'Send':'Gửi'}</span></a>
+    <a class="set-item" href="https://discord.com/users/852613496000872489" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit"><span class="ico">💬</span><span class="lab">Discord<br><small style="font-weight:600;color:var(--mute)">852613496000872489</small></span><span class="val">${currentLang==='en'?'Open':'Mở'}</span></a>
     <div class="set-item" onclick="if(confirm(currentLang==='en'?'Reset all progress?':'Chơi lại từ đầu? Mất tiến độ!')){localStorage.removeItem(SAVE_KEY);S=defaultS();L=null;clearInterval(timer);stopBGM();sfx('bad');$('#modal').style.display='none';render()}"><span class="ico">🔄</span><span class="lab">${t('reset')}</span></div>
     <p class="credit" style="margin:12px 0 0;text-align:center">Phở Hà Lội ${VERSION}<br>Dev <b>Kiên Vũ</b></p>
     <button class="o main" onclick="$('#modal').style.display='none';render()">${t('close')}</button>
