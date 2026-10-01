@@ -2206,12 +2206,12 @@ function bustScreen(){
 }
 
 function titleScreen(){
-  const cont=hasSave()&&S.phase!=='title';
+  const cont=hasSave();
   return `<div class="hero">
     <img src="Assets/logo.png" alt="Phở Hà Lội" style="width:min(240px,64vw);height:auto;aspect-ratio:1;object-fit:contain;margin-bottom:6px;filter:drop-shadow(0 6px 16px rgba(0,0,0,.22))">
     <p>${t('tagline')}</p>
-    ${cont?`<button class="pri" onclick="if(S.phase==='open'){S.phase='prep'}sfx('click');render()">${t('continueDay')} ${S.day}</button>`:''}
-    <button class="pri" style="${cont?'background:var(--line);color:var(--ink);box-shadow:none':''}" onclick="S=defaultS();S.phase='name';sfx('click');save();render()">${t('startNew')}</button>
+    ${cont?`<button class="pri" onclick="atTitle=false;if(S.phase==='open'||S.phase==='title'){S.phase='prep'}sfx('click');render()">${t('continueDay')} ${S.day}</button>`:''}
+    <button class="pri" style="${cont?'background:var(--line);color:var(--ink);box-shadow:none':''}" onclick="atTitle=false;S=defaultS();S.phase='name';sfx('click');save();render()">${t('startNew')}</button>
     <button style="margin-top:10px;width:100%" onclick="openSettings()">${t('settings')}</button>
     <div class="credit">Dev Kiên Vũ · Phở Hà Lội</div>
   </div>`;
@@ -2335,10 +2335,12 @@ function doRestore(){
   }catch(e){toast(t('restoreBad'));sfx('bad')}
 }
 
+let atTitle=true;
 function render(){
   if(!S.crowd||!Object.keys(S.crowd).length)rollCrowd();
   const app=$('#app'),tabs=$('#tabs');
   app.classList.remove('shop-full');
+  if(atTitle){app.innerHTML=titleScreen();tabs.innerHTML='';return}
   if(S.phase==='title'){app.innerHTML=titleScreen();tabs.innerHTML='';return}
   if(S.phase==='name'){app.innerHTML=nameScreen();tabs.innerHTML='';return}
   if(S.phase==='bust'){app.innerHTML=bustScreen();tabs.innerHTML='';return}
