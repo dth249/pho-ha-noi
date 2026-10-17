@@ -2,7 +2,9 @@
 <html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Quán ăn nhỏ</title>
-<meta name="theme-color" content="#5cc07a"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Quán ăn nhỏ"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="application-name" content="Quán ăn nhỏ"><meta name="author" content="Dev Kiên Vũ">
+<meta name="theme-color" content="#5cc07a">
+<meta name="color-scheme" content="only light">
+<style>:root{color-scheme:only light}html,body{background:#fff}</style><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Quán ăn nhỏ"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="application-name" content="Quán ăn nhỏ"><meta name="author" content="Dev Kiên Vũ">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
 html,body{margin:0;height:100%;overflow:hidden;background:#8fdc6a;font-family:"Segoe UI",Roboto,Arial,sans-serif;touch-action:none}
@@ -2209,7 +2211,7 @@ const STORY=(()=>{
     for(let i=0;i<5;i++)ci(x-40+i*20,y-96,2.4,'#ffe27a');c.globalAlpha=1}}
   else{[-30,30].forEach(k=>{ci(x+k,y-9,9,'#2a2a30');ci(x+k,y-9,4,'#aab');for(let i=0;i<4;i++){c.save();c.translate(x+k,y-9);c.rotate(i*PI/4+x*.02);c.fillStyle='#778';c.fillRect(-7,-.7,14,1.4);c.restore()}});
    rr(x-48,y-50,96,36,5,mix('#c9843f','#2a2220',b));rr(x-48,y-30,96,5,0,mix('#a96a2c','#1c1614',b));rr(x-52,y-54,104,7,3,mix('#8a5a2b','#1c1614',b));
-   rr(x-34,y-46,50,12,3,mix('#fff6dc','#3a3230',b));tx('XE ĂN VẶT',x-9,y-40,8.5,mix('#c2341f','#151010',b));
+   rr(x-34,y-46,50,12,3,mix('#fff6dc','#3a3230',b));tx('PHỞ HÀ LỘI',x-9,y-40,7.2,mix('#c2341f','#151010',b));
    rr(x+16,y-68,24,15,3,mix('#9aa6b4','#1d1d22',b));rr(x+14,y-70,28,4,2,mix('#cfd6de','#2a2a30',b))}}
  function steam(x,y,t,a){for(let i=0;i<4;i++){const p=(t*.6+i/4)%1;c.globalAlpha=(1-p)*.5*a;ci(x+Math.sin(p*6+i)*5,y-p*34,3+p*6,'#fff')}c.globalAlpha=1}
  const coin=(x,y,r=4)=>{ci(x,y,r,'#e0a312');ci(x,y,r*.72,'#ffd84a');tx('$',x,y+.4,r*1.2,'#b9770a')};
