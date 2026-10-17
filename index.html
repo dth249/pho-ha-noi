@@ -1564,7 +1564,7 @@ function avDec(d){const f=d.g==1,a=defAv(f?'f':'m'),pk=(k,arr,fn)=>{if(d[k]!=nul
  pk('sk',SKIN,v=>a.skin=v);pk('hs',HAIRS[f?'f':'m'],v=>a.hair=v[0]);pk('hc',HAIRC,v=>a.hc=v);pk('hat',HATS,v=>a.hat=v[0]);pk('hatc',HATC,v=>a.hatc=v);if(!f)pk('bd',BEARDS,v=>a.beard=v[0]);
  pk('gl',GLS,v=>a.gl=v[0]);pk('ac',ACCS,v=>a.acc=v[0]);pk('cc',ACCC,v=>a.accc=v);pk('sh',TOPS,v=>a.top=v[0]);pk('shc',TOPC,v=>a.shc=v);pk('bt',BOTS,v=>a.bottom=v[0]);pk('pc',BOTC,v=>a.pc=v);return a}
 const avAny=d=>{const a=d&&d.avatar;if(a&&typeof a=='object'&&(a.hs!=null||a.sk!=null))return avDec(a);return safeAv(d&&d.avatar_v2)};
-function onSend(t,d){try{if(ONS&&ONS.ws&&ONS.ws.readyState==1)ONS.ws.send(JSON.stringify({type:t,data:d||{}}))}catch(e){}}
+function onSend(t,d){if(typeof admLocal=='function'&&admLocal(t,d||{}))return;try{if(ONS&&ONS.ws&&ONS.ws.readyState==1)ONS.ws.send(JSON.stringify({type:t,data:d||{}}))}catch(e){}}
 function onPush(c){const T=ONS;T.seq=(T.seq|0)+1;onSend('UPDATE_COINS',{coins:c,seq:T.seq,flow:mTake(),ts:Date.now()})}
 function adoptCoins(v){const T=ONS;v=Math.floor(+v);if(!T||!(v>=0))return;v=Math.min(2147483647,v);if(Math.abs(v-onCoins())>=1){MSRC='#';_M.v=v;save();toast('🔒 Tiền đã được đồng bộ với máy chủ')}T.sent=v}
 function onSyncNow(){if(!ONS||!ONS.joined)return;ONS.sent=onCoins();onPush(ONS.sent)}
@@ -1643,7 +1643,7 @@ function onMsg(t,d){const T=ONS;
  case'TRANSFER_OK':{const a=Math.max(0,+d.amount||0);MSRC='Chuyển khoản đi';_M.v=Math.max(0,_M.v-a);T.sent=+d.yourCoins||onCoins();toast('💸 Đã chuyển '+kmb(a)+' cho '+String(d.toName||'?'));onLog('','Bạn đã chuyển '+kmb(a)+' cho '+String(d.toName||'?'),1);sfx('click');break}
  case'TRANSFER_RECEIVED':{const a=Math.max(0,+d.amount||0);MSRC='Nhận chuyển khoản';_M.v=_M.v+a;T.sent=+d.yourCoins||onCoins();toast('💰 '+String(d.fromName||'?')+' chuyển cho bạn '+kmb(a));onLog('',String(d.fromName||'?')+' chuyển cho bạn '+kmb(a),1);break}
  case'TRANSFER_ERROR':toast(String(d.reason||'Chuyển tiền thất bại'));break;
- case'TRANSFER_NOTIFICATION':onLog('',String(d.fromName||'?')+' → '+String(d.toName||'?')+': '+kmb(+d.amount||0),1);break;
+ case'TRANSFER_NOTIFICATION':if(T.admin){(ADM.logs=ADM.logs||[]).unshift({t:Date.now(),n:String(d.fromName||'?').slice(0,30),x:'chuyển cho '+String(d.toName||'?').slice(0,30),a:+d.amount||0});ADM.logs.length=Math.min(ADM.logs.length,80)}onLog('',String(d.fromName||'?')+' → '+String(d.toName||'?')+': '+kmb(+d.amount||0),1);break;
  case'REDEEM_GIFTCODE_OK':{const a=Math.max(0,+d.coinsAdded||0);MSRC='Nhập giftcode';_M.v=_M.v+a;T.sent=+d.yourCoins||onCoins();onModalClose();toast('🎁 Nhận '+kmb(a)+' từ giftcode');break}
  case'REDEEM_GIFTCODE_ERROR':toast(String(d.reason||'Giftcode không hợp lệ'));break;
  case'BECOME_ADMIN_OK':if(d.isAdmin){T.admin=1;$('on-adm').style.display='block';toast('🛠 Đã bật quyền admin')}break;
@@ -1791,7 +1791,28 @@ function sigSend(to,m){if(!ONS||!to||to===ONS.code)return;const c=SG.conns.get(t
  if(!SG.peer)sgStart();else sgDial(to)}
 function sgIn(from,d){if(!ONS||!inON||!d||typeof d!='object')return;const k=String(d.kind||'');
  if(k=='act'){const q=d.data||{};onAct({from,to:String(q.t||''),action:String(q.a||'')});return}
+ if(admIn(from,k,d))return;
  vxSig({from,kind:k,data:d.data})}
+/* ----- Admin: server chỉ hỗ trợ tạo giftcode, chặn/bỏ chặn chat, đổi mã ngân hàng.
+   Các lệnh còn lại (danh sách, log, thông báo, sửa/xóa tài khoản, xem thông tin) xử lý ở client + kênh P2P ----- */
+function admLocal(t,d){
+ if(t=='ADMIN_LIST_MEMBERS'){ADM.mem=null;return true}
+ if(t=='ADMIN_LIST_GIFTCODES')return true;
+ if(t=='ADMIN_LIST_LOGS'){if(!ADM.logs)ADM.logs=[];return true}
+ if(t=='ADMIN_ANNOUNCE'){const m=String(d.message||'').slice(0,280);if(!m||!ONS)return true;
+  ONS.pl.forEach(p=>sigSend(p.pc,{kind:'aann',data:{message:m}}));showAnn({message:m});ADM.f.msg='';toast('Đã đăng thông báo');admRender();return true}
+ if(t=='ADMIN_EDIT_FIELD'){sigSend(String(d.targetCode),{kind:'aedit',data:{field:d.field,value:d.value}});return true}
+ if(t=='ADMIN_REQUEST_INFO'){sigSend(String(d.targetCode),{kind:'ainfo'});return true}
+ if(t=='ADMIN_DELETE_ACCOUNT'){sigSend(String(d.targetCode),{kind:'adel'});setTimeout(()=>admAfter({targetCode:d.targetCode,action:'DELETE'}),600);return true}
+ return false}
+function admIn(from,k,d){const T=ONS,p=T&&T.pl.get(from);
+ if(k=='aann'){if(p&&p.adm)showAnn(d.data||{});return true}
+ if(k=='ainfor'){admGotInfo({targetCode:from,info:(d.data||{}).info});return true}
+ if(!(p&&p.adm))return k=='aedit'||k=='ainfo'||k=='adel';
+ if(k=='aedit'){admApply({field:(d.data||{}).field,value:(d.data||{}).value});return true}
+ if(k=='ainfo'){sigSend(from,{kind:'ainfor',data:{info:admMine()}});return true}
+ if(k=='adel'){admWipe();return true}
+ return false}
 /* ----- thẻ người chơi · NPC · admin ----- */
 function doTransfer(bn,a){a=Math.floor(+a);if(!/^\d{6}$/.test(bn)){toast('Mã ngân hàng gồm đúng 6 chữ số');return}if(bn===ON_BN){toast('Không thể tự chuyển cho mình');return}if(!(a>0)||a>2e9){toast('Số tiền không hợp lệ');return}if(a>_M.v){toast('Không đủ tiền');return}onSyncNow();onSend('TRANSFER',{toBankNumber:bn,amount:a});onModalClose()}
 function onCard(p){const amt=h('input',{type:'number',inputmode:'numeric',min:'1',placeholder:'Số tiền muốn chuyển'}),T=ONS;
