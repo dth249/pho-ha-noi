@@ -23,7 +23,7 @@ canvas#cv{position:fixed;inset:0;width:100%;height:100%}
 #nbuy{position:fixed;z-index:6;display:none;transform:translate(-50%,0);border:0;border-radius:16px;background:#2e9b57;color:#fff;font:800 13px sans-serif;padding:6px 11px;box-shadow:0 2px 8px rgba(0,0,0,.4);white-space:nowrap}#nbuy.no{background:#8a98a4}
 #build{right:14px;bottom:calc(30px + env(safe-area-inset-bottom));background:#2e9b57}
 #buy{left:50%;transform:translateX(-50%);bottom:calc(160px + env(safe-area-inset-bottom));background:#e0432f;display:none;white-space:nowrap}
-#joy{z-index:8;touch-action:none;position:fixed;left:50%;transform:translateX(-50%);bottom:calc(24px + env(safe-area-inset-bottom));width:112px;height:112px;border-radius:50%;background:#fff6;border:2px solid #fff9}
+#joy{z-index:8;touch-action:none;position:fixed;left:0;top:0;opacity:0;pointer-events:none;transition:opacity .12s;width:112px;height:112px;border-radius:50%;background:#fff6;border:2px solid #fff9;box-sizing:border-box}#joy.on{opacity:1}
 #joy::before{content:"";position:absolute;inset:-22px;border-radius:50%}#knob{pointer-events:none;position:absolute;width:48px;height:48px;border-radius:50%;background:#fffd;left:32px;top:32px;box-shadow:0 2px 4px #0003}
 #menu{position:fixed;inset:0;background:#0006;display:none;align-items:center;justify-content:center}
 #menu .box{background:#fff;border-radius:18px;padding:16px;width:min(86vw,320px)}
@@ -916,12 +916,16 @@ function drawBands(){const R=(x0,y0,x1,y1)=>[P(x0,y0),P(x1,y0),P(x1,y1),P(x0,y1)
 function draw(){
  c=MC;c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#8fdc6a';c.fillRect(0,0,W,H);
  ox=W/2-cam.x*S;oy=H/2-cam.y*S;
- for(let y=0;y<N;y++)for(let x=0;x<N;x++){const q=cells[y*N+x],[sx,sy]=P(x+.5,y+.5);
-  if(sx<-60||sx>W+60||sy<-40||sy>H+40)continue;
+ /* chỉ vẽ phần bản đồ đang nằm trong khung nhìn: tính dải ô nhìn thấy theo từng hàng, không quét cả bản đồ */
+ const U0=(-60-ox)/(32*S),U1=(W+60-ox)/(32*S),V0=(-40-oy)/(16*S)-1,V1=(H+40-oy)/(16*S)-1,rowA=[],rowB=[];
+ let yA=N,yB=-1;
+ for(let y=0;y<N;y++){const xa=Math.max(0,Math.ceil(Math.max(U0+y,V0-y))),xb=Math.min(N-1,Math.floor(Math.min(U1+y,V1-y)));rowA[y]=xa;rowB[y]=xb;if(xa<=xb){if(y<yA)yA=y;yB=y}}
+ for(let y=yA;y<=yB;y++)for(let x=rowA[y];x<=rowB[y];x++){const q=cells[y*N+x];
   poly([P(x,y),P(x+1,y),P(x+1,y+1),P(x,y+1)],tcol(q,x,y))}
- for(let y=0;y<N;y++)for(let x=0;x<N;x++){const q=cells[y*N+x];if(!(q.h||q.v||q.rg)||(q.t!=1&&q.t!=10))continue;const[sx,sy]=P(x+.5,y+.5);if(sx<-60||sx>W+60||sy<-40||sy>H+40)continue;roadMarks(x,y,q)}
+ for(let y=yA;y<=yB;y++)for(let x=rowA[y];x<=rowB[y];x++){const q=cells[y*N+x];if(!(q.h||q.v||q.rg)||(q.t!=1&&q.t!=10))continue;roadMarks(x,y,q)}
  drawBands();drawSports();
  LOTS.forEach(l=>{const pts=[P(l.x,l.y),P(l.x+l.w,l.y),P(l.x+l.w,l.y+l.d),P(l.x,l.y+l.d)];
+  if(pts[1][0]<-10||pts[3][0]>W+10||pts[0][1]>H+10||pts[2][1]<-10)return; /* lô đất ngoài màn hình thì bỏ qua */
   c.setLineDash(l.owned?[]:[7,6]);poly(pts,null,l.owned?'rgba(46,155,87,.8)':'rgba(255,255,255,.95)',2.2);c.setLineDash([])});
  for(const f of flows){const[sx,sy]=P(f.x,f.y);if(sx<-20||sx>W+20||sy<-20||sy>H+20)continue;
   box(f.x,f.y,0,.07,.07,5,'#3c8a3c');box(f.x-.04,f.y-.04,5,.15,.15,3,f.c)}
@@ -947,10 +951,15 @@ const keys={};let jv={x:0,y:0};
 addEventListener('keydown',e=>keys[e.key.toLowerCase()]=1);addEventListener('keyup',e=>keys[e.key.toLowerCase()]=0);
 const jy=$('joy'),kn=$('knob');let jid=null;
 function jmove(e){const r=jy.getBoundingClientRect();let dx=e.clientX-(r.left+56),dy=e.clientY-(r.top+56);const l=Math.hypot(dx,dy),m=40;if(l>m){dx*=m/l;dy*=m/l}
- kn.style.left=32+dx+'px';kn.style.top=32+dy+'px';jv={x:dx/m,y:dy/m}}
-jy.addEventListener('pointerdown',e=>{jid=e.pointerId;try{jy.setPointerCapture(jid)}catch(_){}jmove(e);e.preventDefault();e.stopPropagation()});addEventListener('pointermove',e=>{if(e.pointerId==jid)jmove(e)});addEventListener('pointerup',e=>jend(e));addEventListener('pointercancel',e=>jend(e));
+ kn.style.left=32+dx+'px';kn.style.top=32+dy+'px';jv={x:dx/m,y:dy/m};if(jt&&Math.hypot(e.clientX-jt.x,e.clientY-jt.y)>8)jt.mv=1}
+let jt=null;
+/* joystick nổi: chạm nửa dưới màn hình là hiện ngay tại ngón tay */
+const jyOK=()=>!HOMEON&&me&&$('sel').style.display=='none'&&jy.style.display!=='none'&&!bm&&!ed&&!dayEnd;
+addEventListener('pointerdown',e=>{if(e.target!==cv||jid!==null||!jyOK()||e.clientY<innerHeight*.45)return;
+ jid=e.pointerId;jt={x:e.clientX,y:e.clientY,t:performance.now(),mv:0};try{cv.setPointerCapture(jid)}catch(_){}
+ jy.style.left=(e.clientX-56)+'px';jy.style.top=(e.clientY-56)+'px';jy.classList.add('on');jmove(e);e.preventDefault();e.stopImmediatePropagation()},true);addEventListener('pointermove',e=>{if(e.pointerId==jid)jmove(e)});addEventListener('pointerup',e=>jend(e));addEventListener('pointercancel',e=>jend(e));
 jy.addEventListener('pointermove',e=>{if(e.pointerId==jid)jmove(e)});
-const jend=e=>{if(e.pointerId==jid){jid=null;jv={x:0,y:0};kn.style.left='32px';kn.style.top='32px'}};
+const jend=e=>{if(e.pointerId==jid){const t=jt;jid=null;jt=null;jv={x:0,y:0};kn.style.left='32px';kn.style.top='32px';jy.classList.remove('on');if(t&&!t.mv&&inside&&e.type=='pointerup'&&performance.now()-t.t<500)try{tapB(e)}catch(_){}}};
 jy.addEventListener('pointerup',jend);jy.addEventListener('pointercancel',jend);
 const D=[[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
 function goTo(tx,ty){tx=Math.floor(tx);ty=Math.floor(ty);if(tx<0||ty<0||tx>=N||ty>=N)return;
