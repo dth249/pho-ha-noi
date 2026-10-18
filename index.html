@@ -1553,8 +1553,8 @@ const ON_URL='wss://songsinhvien.online/kienvu',ON_ROOM='quan-ven-pho-online',ON
 const ONP={x:10,y:ONH-2},ONX=[8.6,11.4];
 const NPCS=[{id:'guide',x:7,y:12.4,name:'Cô Hương',role:'Hướng dẫn',f:AVF(Object.assign(defAv('f'),{hair:'bun',hc:'#3a2a24',shc:'#e86fa0',bottom:'skirt',pc:'#4a3a8a',gl:'normal'}))},
  {id:'bank',x:13,y:12.4,name:'Chú Ngân',role:'Ngân hàng',f:AVF(Object.assign(defAv('m'),{hair:'side',hc:'#2b2b2b',shc:'#f2f2f2',pc:'#2b2b30',skin:'#d9a27a'}))},
- {id:'decor',x:12.4,y:1.3,name:'Cô Lan',role:'Bán decor',f:AVF(Object.assign(defAv('f'),{hair:'bun',hc:'#7a4a2a',shc:'#3fa37a',bottom:'skirt',pc:'#2f6f5a'}))}];
-const ONF=[[3,0,2.5,1.8],[8.6,0,2.8,1.8],[14,0,3,1.8],[9,6,2.6,1.6],[6.4,4.6,2.1,1.5],[12,4.6,2.1,1.5],[2,8.4,2.1,1.5],[5.2,8.4,2.1,1.5],[12.8,8.4,2.1,1.5],[16,8.4,2.1,1.5],[.5,5.4,1.3,1.3],[18.2,6.4,1.3,1.3],[7.6,10.6,.9,.9],[11.7,10.6,.9,.9]];
+ {id:'decor',x:5.55,y:1.2,name:'Cô Lan',role:'Bán decor',f:AVF(Object.assign(defAv('f'),{hair:'bun',hc:'#7a4a2a',shc:'#3fa37a',bottom:'skirt',pc:'#2f6f5a'}))}];
+const ONF=[[2,0,2.6,1.8],[6.5,0,2.6,1.8],[11,0,2.6,1.8],[15.5,0,2.6,1.8],[1.5,5,2.1,1.5],[4.6,5,2.1,1.5],[7.7,5,2.1,1.5],[10.8,5,2.1,1.5],[13.9,5,2.1,1.5],[17,5,2.1,1.5],[.1,7.9,1.3,1.3],[18.6,7.9,1.3,1.3],[7.6,10.6,.9,.9],[11.7,10.6,.9,.9]];
 const freeO=(x,y)=>[[-.14,-.14],[.14,-.14],[-.14,.14],[.14,.14]].every(o=>{const X=x+o[0],Y=y+o[1];return X>.3&&X<ONW-.3&&Y>.3&&Y<ONH-.2})&&!ONF.some(r=>x+.14>r[0]&&x-.14<r[0]+r[2]&&y+.14>r[1]&&y-.14<r[1]+r[3])&&!NPCS.some(n=>Math.hypot(x-n.x,y-n.y)<.5);
 let inON=0,ONS=null,ONU=null,onDown=null,onTry=0,onDup=0,ONold=null;
 const DA=[Math.PI/4,Math.PI*.75,-Math.PI/4,-Math.PI*.75];
@@ -2022,10 +2022,10 @@ function onTag(px,py,t,adm){c.font='700 '+11*S+'px sans-serif';const w=c.measure
 /* ----- SẠP HÀNG: chạm vào sạp để bán vật phẩm trong kho (nhận 60% giá nhập) ----- */
 const SELLP=.6;
 const STALLS=[
- {stall:1,id:'food',name:'SẠP THỰC PHẨM',e:'🥩',x:3,y:.2,w:2.5,d:1.4,col:'#e84a35',gc:['#d9534f','#7ac26a','#f4c542','#f6eed8'],keys:['thit','bo','ga','ca','sua','rau','bot','pho','bun','banhmi','banhbao','caphe']},
- {stall:1,id:'drink',name:'SẠP ĐỒ UỐNG',e:'🥤',x:9.1,y:6.1,w:2.4,d:1.4,col:'#1f6f9a',gc:['#e23b3b','#2f86e0','#1f9d55','#f4c542'],keys:['coca','pepsi','trax','coc','dia']},
- {stall:1,id:'mat',name:'SẠP VẬT LIỆU',e:'🧱',x:14.2,y:.2,w:2.6,d:1.4,col:'#8a5a30',gc:['#9a6b3f','#8c95a3','#c9ced6','#e8d9b8'],keys:['go','nhua','sat','nem']},
- {stall:1,id:'decor',name:'QUẦY DECOR',e:'🪴',x:8.6,y:.2,w:2.8,d:1.4,col:'#2f9d6a',gc:['#3f9d3f','#e86fa0','#f4c542','#8a5a30'],keys:[]}];
+ {stall:1,id:'food',name:'SẠP THỰC PHẨM',e:'🥩',x:2,y:.2,w:2.6,d:1.4,col:'#e84a35',gc:['#d9534f','#7ac26a','#f4c542','#f6eed8'],keys:['thit','bo','ga','ca','sua','rau','bot','pho','bun','banhmi','banhbao','caphe']},
+ {stall:1,id:'drink',name:'SẠP ĐỒ UỐNG',e:'🥤',x:11,y:.2,w:2.6,d:1.4,col:'#1f6f9a',gc:['#e23b3b','#2f86e0','#1f9d55','#f4c542'],keys:['coca','pepsi','trax','coc','dia']},
+ {stall:1,id:'mat',name:'SẠP VẬT LIỆU',e:'🧱',x:15.5,y:.2,w:2.6,d:1.4,col:'#8a5a30',gc:['#9a6b3f','#8c95a3','#c9ced6','#e8d9b8'],keys:['go','nhua','sat','nem']},
+ {stall:1,id:'decor',name:'QUẦY DECOR',e:'🪴',x:6.5,y:.2,w:2.6,d:1.4,col:'#2f9d6a',gc:['#3f9d3f','#e86fa0','#f4c542','#8a5a30'],keys:[]}];
 STALLS.forEach(t=>{t.cx=t.x+t.w/2;t.cy=t.y+t.d+.7;t.nx=t.cx;t.ny=t.cy});
 function drawStall(t){const x=t.x,y=t.y,w=t.w,d=t.d;
  box(x,y,0,w,d,14,'#9a6b3f');box(x-.05,y-.05,14,w+.1,d+.1,2,'#c99a5b');
@@ -2049,7 +2049,7 @@ function onDecor(){
    Server chưa có tin nhắn riêng cho chợ nên dùng kênh CHAT (tin ẩn bắt đầu bằng U+2063, không hiện ra);
    tiền đi bằng TRANSFER của server, người bán tự giao hàng khi thấy tiền về, không giao được thì hoàn tiền ----- */
 const MKEYS=['go','nhua','sat','nem','thit','rau','bot','caphe','coc','dia','bo','ga','ca','sua','pho','bun','banhmi','banhbao','coca','pepsi','trax'],MKP='\u2063',SCOL=['#e84a35','#1f6f9a','#2e9b57','#8a4fd0','#e08a1e','#d9457a'];
-const MSLOTS=[[6.4,4.6],[12,4.6],[2,8.4],[5.2,8.4],[12.8,8.4],[16,8.4]].map((p,i)=>({stall:1,mem:1,i,x:p[0],y:p[1],w:2.1,d:1.2,cx:p[0]+1.05,cy:p[1]+1.2+.7,gc:['#d9534f','#7ac26a','#f4c542','#f6eed8'],own:null,empty:1,name:'SẠP TRỐNG',col:'#9aa3ad'}));
+const MSLOTS=[[1.5,5],[4.6,5],[7.7,5],[10.8,5],[13.9,5],[17,5]].map((p,i)=>({stall:1,mem:1,i,x:p[0],y:p[1],w:2.1,d:1.2,cx:p[0]+1.05,cy:p[1]+1.2+.7,gc:['#d9534f','#7ac26a','#f4c542','#f6eed8'],own:null,empty:1,name:'SẠP TRỐNG',col:'#9aa3ad'}));
 const MST={q:[],rec:[],ord:[],buy:null,rb:0};
 const stMine=()=>{const T=ONS;return T?MSLOTS.find(t=>t.own&&t.own.pc===T.code):null};
 function stLook(t){const o=t.own,T=ONS;if(!o){t.empty=1;t.name='SẠP TRỐNG';t.col='#9aa3ad';return}t.empty=0;const nm=T&&o.pc===T.code?String(SHOP||'Bạn'):((T&&T.pl.get(o.pc)||{}).name||'?');t.name='SẠP '+nm.toUpperCase().slice(0,11);t.col=SCOL[(+o.pc||0)%SCOL.length]}
@@ -2126,7 +2126,7 @@ function drawON(){c=MC;c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#7cc866';c.f
  S=W<520?.9:1.1;ic.x+=(ONP.x-ic.x)*.15;ic.y+=(ONP.y-ic.y)*.15;ox=W/2-(ic.x-ic.y)*32*S;oy=H*.45-(ic.x+ic.y)*16*S;
  {const fl=onFloor();c.drawImage(fl.cv,Math.round((ox-fl.bx)*dpr)/dpr,Math.round((oy-fl.by)*dpr)/dpr,fl.w,fl.h)}
  const o=[],ents=[];
- const tree=(x,y)=>o.push([x+y,()=>{cyl(x,y,0,.14,28,'#7a5a3a');ball(x,y,34,.62,'#3f9d3f');ball(x,y,45,.44,'#52b552')}]);tree(1.15,6.05);tree(18.85,7.05);
+ const tree=(x,y)=>o.push([x+y,()=>{cyl(x,y,0,.14,28,'#7a5a3a');ball(x,y,34,.62,'#3f9d3f');ball(x,y,45,.44,'#52b552')}]);tree(.75,8.5);tree(19.25,8.5);
  for(const[x,y]of[[7.6,10.6],[11.7,10.6]])o.push([x+y+.9,()=>{box(x,y,0,.9,.9,10,'#9a6b3f');ball(x+.45,y+.45,16,.5,'#3f9d3f')}]);
  STALLS.forEach(t=>o.push([t.x+t.w/2+t.y+t.d+.5,()=>drawStall(t)]));
  MSLOTS.forEach(t=>{stLook(t);o.push([t.x+t.w/2+t.y+t.d+.5,()=>drawStall(t)])});
